@@ -39,6 +39,7 @@ public class AccountController {
         return ResponseEntity.ok(Map.of("totalCash", totalCash));
     }
 
+    // Link account with Plaid
     @PostMapping("/link")
     public ResponseEntity<Account> linkAccount(
             @AuthenticationPrincipal String userEmail,
