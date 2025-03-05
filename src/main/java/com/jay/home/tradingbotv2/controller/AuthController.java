@@ -45,13 +45,29 @@ public class AuthController {
                 String token = jwtUtils.generateToken(email);
                 logger.debug("Generated token for user {}: {}", email, token);
                 
+                // Create a response with token and user object
                 Map<String, Object> response = new HashMap<>();
                 response.put("token", token);
                 response.put("tokenType", "Bearer");
-                response.put("email", user.getEmail());
-                response.put("firstName", user.getFirstName());
-                response.put("lastName", user.getLastName());
                 
+                // Create a standardized user object
+                Map<String, Object> userMap = new HashMap<>();
+                userMap.put("id", user.getId());
+                userMap.put("email", user.getEmail());
+                userMap.put("firstName", user.getFirstName());
+                userMap.put("lastName", user.getLastName());
+                
+                // Add additional user details if needed
+                if (user.getMonthlyIncome() != null) {
+                    userMap.put("monthlyIncome", user.getMonthlyIncome());
+                }
+                if (user.getPaydayDay() != null) {
+                    userMap.put("paydayDay", user.getPaydayDay());
+                }
+                
+                response.put("user", userMap);
+                
+                logger.debug("User successfully logged in: {}", email);
                 return ResponseEntity.ok(response);
             } else {
                 logger.warn("Invalid password for user: {}", email);
@@ -78,13 +94,29 @@ public class AuthController {
             String token = jwtUtils.generateToken(user.getEmail());
             logger.debug("Generated token for new user {}: {}", user.getEmail(), token);
             
+            // Create a response with token and user object
             Map<String, Object> response = new HashMap<>();
             response.put("token", token);
             response.put("tokenType", "Bearer");
-            response.put("email", user.getEmail());
-            response.put("firstName", user.getFirstName());
-            response.put("lastName", user.getLastName());
             
+            // Create a standardized user object
+            Map<String, Object> userMap = new HashMap<>();
+            userMap.put("id", user.getId());
+            userMap.put("email", user.getEmail());
+            userMap.put("firstName", user.getFirstName());
+            userMap.put("lastName", user.getLastName());
+            
+            // Add additional user details if needed
+            if (user.getMonthlyIncome() != null) {
+                userMap.put("monthlyIncome", user.getMonthlyIncome());
+            }
+            if (user.getPaydayDay() != null) {
+                userMap.put("paydayDay", user.getPaydayDay());
+            }
+            
+            response.put("user", userMap);
+            
+            logger.debug("User successfully registered: {}", user.getEmail());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             logger.error("Registration failed: {}", e.getMessage());
@@ -101,21 +133,36 @@ public class AuthController {
     
     @GetMapping("/whoami")
     public ResponseEntity<?> whoAmI(@AuthenticationPrincipal String userEmail) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("authenticated", userEmail != null);
-        response.put("email", userEmail);
-        
-        if (userEmail != null) {
-            try {
-                User user = userService.getUserByEmail(userEmail);
-                response.put("firstName", user.getFirstName());
-                response.put("lastName", user.getLastName());
-                response.put("userId", user.getId());
-            } catch (Exception e) {
-                response.put("error", "Error fetching user details: " + e.getMessage());
-            }
+        if (userEmail == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("authenticated", false, "message", "Not authenticated"));
         }
         
-        return ResponseEntity.ok(response);
+        try {
+            User user = userService.getUserByEmail(userEmail);
+            
+            // Create a response that matches our frontend User model
+            Map<String, Object> userResponse = new HashMap<>();
+            userResponse.put("id", user.getId());
+            userResponse.put("email", user.getEmail());
+            userResponse.put("firstName", user.getFirstName());
+            userResponse.put("lastName", user.getLastName());
+            userResponse.put("authenticated", true);
+            
+            // Add additional user details if needed
+            if (user.getMonthlyIncome() != null) {
+                userResponse.put("monthlyIncome", user.getMonthlyIncome());
+            }
+            if (user.getPaydayDay() != null) {
+                userResponse.put("paydayDay", user.getPaydayDay());
+            }
+            
+            logger.debug("Returning user info for {}: {}", userEmail, userResponse);
+            return ResponseEntity.ok(userResponse);
+        } catch (Exception e) {
+            logger.error("Error in /whoami endpoint for {}: {}", userEmail, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Error fetching user details: " + e.getMessage()));
+        }
     }
 }

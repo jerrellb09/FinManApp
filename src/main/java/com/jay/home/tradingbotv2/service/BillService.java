@@ -72,6 +72,22 @@ public class BillService {
         billRepository.save(bill);
     }
     
+    public void markBillAsUnpaid(Long billId) {
+        Bill bill = billRepository.findById(billId)
+                .orElseThrow(() -> new RuntimeException("Bill not found"));
+        bill.setPaid(false);
+        billRepository.save(bill);
+    }
+    
+    public Bill getBillById(Long billId) {
+        return billRepository.findById(billId)
+                .orElseThrow(() -> new RuntimeException("Bill not found"));
+    }
+    
+    public List<Bill> getUserBillsByCategory(Long userId, Long categoryId) {
+        return billRepository.findByUserIdAndCategoryId(userId, categoryId);
+    }
+    
     public BigDecimal getRemainingIncome(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
