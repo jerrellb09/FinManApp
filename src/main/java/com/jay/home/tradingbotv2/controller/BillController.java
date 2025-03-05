@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/bills")
+
 public class BillController {
 
     private final BillService billService;
@@ -71,5 +72,23 @@ public class BillController {
     public ResponseEntity<Void> resetMonthlyBills(@PathVariable Long userId) {
         billService.resetMonthlyBills(userId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @GetMapping("/by-category")
+    public ResponseEntity<Map<String, List<Bill>>> getBillsByCategory(@RequestParam Long userId) {
+        Map<String, List<Bill>> billsByCategory = billService.getBillsByCategory(userId);
+        return new ResponseEntity<>(billsByCategory, HttpStatus.OK);
+    }
+    
+    @GetMapping("/upcoming")
+    public ResponseEntity<List<Bill>> getUpcomingBills(@RequestParam Long userId, @RequestParam(defaultValue = "30") int days) {
+        List<Bill> upcomingBills = billService.getUpcomingBills(userId, days);
+        return new ResponseEntity<>(upcomingBills, HttpStatus.OK);
+    }
+    
+    @GetMapping("/monthly-total")
+    public ResponseEntity<Map<String, BigDecimal>> getMonthlyTotal(@RequestParam Long userId) {
+        BigDecimal monthlyTotal = billService.getMonthlyBillsTotal(userId);
+        return new ResponseEntity<>(Map.of("monthlyTotal", monthlyTotal), HttpStatus.OK);
     }
 }

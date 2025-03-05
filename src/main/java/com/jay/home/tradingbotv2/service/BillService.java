@@ -1,27 +1,34 @@
 package com.jay.home.tradingbotv2.service;
 
 import com.jay.home.tradingbotv2.model.Bill;
+import com.jay.home.tradingbotv2.model.Category;
 import com.jay.home.tradingbotv2.model.User;
 import com.jay.home.tradingbotv2.repository.BillRepository;
+import com.jay.home.tradingbotv2.repository.CategoryRepository;
 import com.jay.home.tradingbotv2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class BillService {
 
     private final BillRepository billRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public BillService(BillRepository billRepository, UserRepository userRepository) {
+    public BillService(BillRepository billRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
         this.billRepository = billRepository;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Bill createBill(Bill bill, Long userId) {
@@ -90,5 +97,56 @@ public class BillService {
                 billRepository.save(bill);
             }
         }
+    }
+    
+    public Map<String, List<Bill>> getBillsByCategory(Long userId) {
+        List<Bill> userBills = billRepository.findByUserId(userId);
+        Map<String, List<Bill>> billsByCategory = new HashMap<>();
+        
+        // Initialize for each category
+        List<Category> categories = categoryRepository.findAll();
+        for (Category category : categories) {
+            billsByCategory.put(category.getName(), new ArrayList<>());
+        }
+        
+        // Add "Uncategorized" category
+        billsByCategory.put("Uncategorized", new ArrayList<>());
+        
+        // Group bills by category
+        for (Bill bill : userBills) {
+            if (bill.getCategory() != null) {
+                String categoryName = bill.getCategory().getName();
+                billsByCategory.computeIfAbsent(categoryName, k -> new ArrayList<>()).add(bill);
+            } else {
+                billsByCategory.get("Uncategorized").add(bill);
+            }
+        }
+        
+        return billsByCategory;
+    }
+    
+    public List<Bill> getUpcomingBills(Long userId, int days) {
+        int currentDay = LocalDate.now().getDayOfMonth();
+        int lastDayToCheck = currentDay + days;
+        int daysInMonth = LocalDate.now().lengthOfMonth();
+        
+        List<Bill> userBills = billRepository.findByUserId(userId);
+        return userBills.stream()
+                .filter(bill -> !bill.isPaid())
+                .filter(bill -> {
+                    int dueDay = bill.getDueDay();
+                    return (dueDay >= currentDay && dueDay <= lastDayToCheck) ||
+                           (lastDayToCheck > daysInMonth && dueDay <= (lastDayToCheck - daysInMonth));
+                })
+                .collect(Collectors.toList());
+    }
+    
+    public BigDecimal getMonthlyBillsTotal(Long userId) {
+        List<Bill> userBills = billRepository.findByUserId(userId);
+        BigDecimal total = userBills.stream()
+                .filter(Bill::isRecurring)
+                .map(Bill::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return total;
     }
 }

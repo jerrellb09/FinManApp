@@ -21,4 +21,16 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
     
     @Query("SELECT SUM(b.amount) FROM Bill b WHERE b.user.id = :userId AND b.isPaid = false")
     Double getTotalUnpaidBillsAmount(@Param("userId") Long userId);
+    
+    @Query("SELECT b FROM Bill b WHERE b.user.id = :userId AND b.category.id = :categoryId")
+    List<Bill> findByUserIdAndCategoryId(@Param("userId") Long userId, @Param("categoryId") Long categoryId);
+    
+    @Query("SELECT SUM(b.amount) FROM Bill b WHERE b.user.id = :userId AND b.isRecurring = true")
+    Double getMonthlyRecurringBillsAmount(@Param("userId") Long userId);
+    
+    @Query("SELECT COUNT(b) FROM Bill b WHERE b.user.id = :userId AND b.isPaid = true")
+    Long countPaidBillsByUserId(@Param("userId") Long userId);
+    
+    @Query("SELECT COUNT(b) FROM Bill b WHERE b.user.id = :userId AND b.isPaid = false")
+    Long countUnpaidBillsByUserId(@Param("userId") Long userId);
 }

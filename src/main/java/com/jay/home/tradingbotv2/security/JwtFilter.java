@@ -33,11 +33,19 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
+        
+        // Debugging
+        boolean hasHeader = authorizationHeader != null;
+        if (hasHeader) {
+            logger.debug("Authorization header present");
+        } else {
+            logger.debug("Authorization header not present");
+        }
 
         String username = null;
         String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if (hasHeader && authorizationHeader.startsWith("Bearer ")) {
             // Trim any whitespace to prevent base64 decoding errors
             jwt = authorizationHeader.substring(7).trim();
             
@@ -47,19 +55,16 @@ public class JwtFilter extends OncePerRequestFilter {
                 return;
             }
             
+            logger.debug("JWT token found in request");
+            
             try {
                 username = jwtUtils.extractUsername(jwt);
-            } catch (IllegalArgumentException e) {
-                logger.error("Unable to get JWT Token: " + e.getMessage());
-            } catch (ExpiredJwtException e) {
-                logger.error("JWT Token has expired: " + e.getMessage());
-            } catch (MalformedJwtException e) {
-                logger.error("Invalid JWT Token: " + e.getMessage());
-            } catch (DecodingException e) {
-                logger.error("Error decoding JWT Token: " + e.getMessage());
+                logger.debug("Username extracted: " + (username != null ? username : "null"));
             } catch (Exception e) {
-                logger.error("Unexpected error processing JWT Token: " + e.getMessage());
+                logger.error("Error processing JWT token", e);
             }
+        } else {
+            logger.debug("No valid JWT token found in request");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -67,8 +72,9 @@ public class JwtFilter extends OncePerRequestFilter {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
                 if (jwtUtils.validateToken(jwt, userDetails)) {
+                    // Store the username (email) as the principal for @AuthenticationPrincipal to work correctly
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
+                            username, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }

@@ -64,7 +64,8 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <!-- Changed from runtime to compile scope to make driver visible during compilation -->
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>

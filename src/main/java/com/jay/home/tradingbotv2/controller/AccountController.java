@@ -6,6 +6,7 @@ import com.jay.home.tradingbotv2.model.User;
 import com.jay.home.tradingbotv2.service.AccountService;
 import com.jay.home.tradingbotv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/accounts")
+
 public class AccountController {
     private final AccountService accountService;
     private final UserService userService;
@@ -28,6 +30,11 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<List<Account>> getUserAccounts(@AuthenticationPrincipal String userEmail) {
+        System.out.println("AccountController.getUserAccounts called with userEmail: " + userEmail);
+        if (userEmail == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(null);
+        }
         User user = userService.getUserByEmail(userEmail);
         return ResponseEntity.ok(accountService.getUserAccounts(user));
     }

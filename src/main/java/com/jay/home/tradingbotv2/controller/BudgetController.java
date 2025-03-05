@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/budgets")
+
 public class BudgetController {
     private final BudgetService budgetService;
     private final UserService userService;

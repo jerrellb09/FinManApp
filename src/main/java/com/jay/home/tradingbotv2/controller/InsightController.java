@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/insights")
+
 public class InsightController {
     private final InsightService insightService;
     private final UserService userService;

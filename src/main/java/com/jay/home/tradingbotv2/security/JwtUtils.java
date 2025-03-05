@@ -29,8 +29,9 @@ public class JwtUtils {
     
     @PostConstruct
     public void init() {
-        // Use Keys.secretKeyFor to generate a secure key for HS256
-        this.secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        // Use a consistent key derived from the secret string instead of generating a new one each time
+        this.secretKey = Keys.hmacShaKeyFor(secretString.getBytes());
+        System.out.println("JwtUtils initialized with secret key");
     }
 
     public String generateToken(String username) {
@@ -57,7 +58,9 @@ public class JwtUtils {
     }
 
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
+        String username = extractClaim(token, Claims::getSubject);
+        System.out.println("Extracted username from token: " + username);
+        return username;
     }
 
     public Date extractExpiration(String token) {
@@ -70,11 +73,19 @@ public class JwtUtils {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+            System.out.println("Successfully parsed JWT token");
+            return claims;
+        } catch (Exception e) {
+            System.err.println("Error parsing JWT token: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private Boolean isTokenExpired(String token) {

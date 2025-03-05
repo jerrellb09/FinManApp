@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
+
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -95,5 +97,25 @@ public class AuthController {
     public ResponseEntity<?> checkAuth() {
         // Simple endpoint to check if authentication is working
         return ResponseEntity.ok(Map.of("message", "Authentication is working"));
+    }
+    
+    @GetMapping("/whoami")
+    public ResponseEntity<?> whoAmI(@AuthenticationPrincipal String userEmail) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("authenticated", userEmail != null);
+        response.put("email", userEmail);
+        
+        if (userEmail != null) {
+            try {
+                User user = userService.getUserByEmail(userEmail);
+                response.put("firstName", user.getFirstName());
+                response.put("lastName", user.getLastName());
+                response.put("userId", user.getId());
+            } catch (Exception e) {
+                response.put("error", "Error fetching user details: " + e.getMessage());
+            }
+        }
+        
+        return ResponseEntity.ok(response);
     }
 }
