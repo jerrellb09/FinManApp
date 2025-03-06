@@ -1,5 +1,7 @@
 package com.jay.home.tradingbotv2.controller;
 
+import com.jay.home.tradingbotv2.dto.BillDTO;
+import com.jay.home.tradingbotv2.mapper.BillMapper;
 import com.jay.home.tradingbotv2.model.Bill;
 import com.jay.home.tradingbotv2.model.User;
 import com.jay.home.tradingbotv2.service.BillService;
@@ -20,15 +22,17 @@ public class BillController {
 
     private final BillService billService;
     private final UserService userService;
+    private final BillMapper billMapper;
 
     @Autowired
-    public BillController(BillService billService, UserService userService) {
+    public BillController(BillService billService, UserService userService, BillMapper billMapper) {
         this.billService = billService;
         this.userService = userService;
+        this.billMapper = billMapper;
     }
 
     @PostMapping
-    public ResponseEntity<Bill> createBill(
+    public ResponseEntity<BillDTO> createBill(
             @AuthenticationPrincipal String userEmail,
             @RequestBody Bill bill, 
             @RequestParam Long userId) {
@@ -42,7 +46,11 @@ public class BillController {
         
         bill.setUser(user);
         Bill createdBill = billService.createBill(bill, userId);
-        return new ResponseEntity<>(createdBill, HttpStatus.CREATED);
+        
+        // Convert to DTO to avoid circular references
+        BillDTO createdBillDTO = billMapper.toDTO(createdBill);
+        
+        return new ResponseEntity<>(createdBillDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{userId}")
@@ -61,6 +69,64 @@ public class BillController {
         return new ResponseEntity<>(bills, HttpStatus.OK);
     }
     
+    @GetMapping("/user/{userId}/simple")
+    public ResponseEntity<List<BillDTO>> getUserBillsSimple(
+            @AuthenticationPrincipal String userEmail,
+            @PathVariable Long userId) {
+        
+        User user = userService.getUserByEmail(userEmail);
+        
+        // Check if the authenticated user is requesting their own bills
+        if (!user.getId().equals(userId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        
+        List<Bill> bills = billService.getUserBills(userId);
+        List<BillDTO> billDTOs = billMapper.toDTOList(bills);
+        return new ResponseEntity<>(billDTOs, HttpStatus.OK);
+    }
+    
+    @GetMapping("/user/{userId}/ids")
+    public ResponseEntity<List<Long>> getUserBillIds(
+            @AuthenticationPrincipal String userEmail,
+            @PathVariable Long userId) {
+        
+        User user = userService.getUserByEmail(userEmail);
+        
+        // Check if the authenticated user is requesting their own bills
+        if (!user.getId().equals(userId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        
+        List<Bill> bills = billService.getUserBills(userId);
+        List<Long> billIds = bills.stream()
+            .map(Bill::getId)
+            .collect(java.util.stream.Collectors.toList());
+        return new ResponseEntity<>(billIds, HttpStatus.OK);
+    }
+    
+    @GetMapping("/{billId}")
+    public ResponseEntity<BillDTO> getBillById(
+            @AuthenticationPrincipal String userEmail,
+            @PathVariable Long billId) {
+        
+        User user = userService.getUserByEmail(userEmail);
+        Bill bill = billService.getBillById(billId);
+        
+        // Check if the bill exists and belongs to the authenticated user
+        if (bill == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        if (!bill.getUser().getId().equals(user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        
+        // Convert to DTO to avoid circular references
+        BillDTO billDTO = billMapper.toDTO(bill);
+        return new ResponseEntity<>(billDTO, HttpStatus.OK);
+    }
+    
     @GetMapping("/user/{userId}/category/{categoryId}")
     public ResponseEntity<List<Bill>> getUserBillsByCategory(
             @AuthenticationPrincipal String userEmail,
@@ -76,6 +142,24 @@ public class BillController {
         
         List<Bill> bills = billService.getUserBillsByCategory(userId, categoryId);
         return new ResponseEntity<>(bills, HttpStatus.OK);
+    }
+    
+    @GetMapping("/user/{userId}/category/{categoryId}/simple")
+    public ResponseEntity<List<BillDTO>> getUserBillsByCategorySimple(
+            @AuthenticationPrincipal String userEmail,
+            @PathVariable Long userId,
+            @PathVariable Long categoryId) {
+        
+        User user = userService.getUserByEmail(userEmail);
+        
+        // Check if the authenticated user is requesting their own bills
+        if (!user.getId().equals(userId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        
+        List<Bill> bills = billService.getUserBillsByCategory(userId, categoryId);
+        List<BillDTO> billDTOs = billMapper.toDTOList(bills);
+        return new ResponseEntity<>(billDTOs, HttpStatus.OK);
     }
 
     @GetMapping("/due/{userId}")
@@ -93,9 +177,26 @@ public class BillController {
         List<Bill> dueBills = billService.getDueBills(userId);
         return new ResponseEntity<>(dueBills, HttpStatus.OK);
     }
+    
+    @GetMapping("/due/{userId}/simple")
+    public ResponseEntity<List<BillDTO>> getDueBillsSimple(
+            @AuthenticationPrincipal String userEmail,
+            @PathVariable Long userId) {
+        
+        User user = userService.getUserByEmail(userEmail);
+        
+        // Check if the authenticated user is requesting their own due bills
+        if (!user.getId().equals(userId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        
+        List<Bill> dueBills = billService.getDueBills(userId);
+        List<BillDTO> dueBillDTOs = billMapper.toDTOList(dueBills);
+        return new ResponseEntity<>(dueBillDTOs, HttpStatus.OK);
+    }
 
     @PutMapping("/{billId}")
-    public ResponseEntity<Bill> updateBill(
+    public ResponseEntity<BillDTO> updateBill(
             @AuthenticationPrincipal String userEmail,
             @PathVariable Long billId, 
             @RequestBody Bill billDetails) {
@@ -113,7 +214,11 @@ public class BillController {
         }
         
         Bill updatedBill = billService.updateBill(billId, billDetails);
-        return new ResponseEntity<>(updatedBill, HttpStatus.OK);
+        
+        // Convert to DTO to avoid circular references
+        BillDTO updatedBillDTO = billMapper.toDTO(updatedBill);
+        
+        return new ResponseEntity<>(updatedBillDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{billId}")
