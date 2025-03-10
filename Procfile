@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar target/TradingbotV2-0.0.1-SNAPSHOT.jar --server.port=$PORT --spring.profiles.active=prod --spring.web.cors.allowed-origins=https://fin-man-app.netlify.app $JAR_OPTS
