@@ -17,12 +17,13 @@ public class CorsConfig {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         
-        // Allow specific origins instead of '*'
+        // Allow specific origins including Netlify
         config.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200",
             "http://localhost:8080",
             "http://localhost:8081",
-            "http://127.0.0.1:4200"
+            "http://127.0.0.1:4200",
+            "https://fin-man-app.netlify.app" // Replace with your actual Netlify domain
         ));
         
         // Allow credentials

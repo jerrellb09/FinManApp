@@ -49,10 +49,26 @@ public class SecurityConfig {
     }
     
     @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:4200",
+            "http://localhost:8080",
+            "https://fin-man-app.netlify.app" // Replace with your actual Netlify domain
+        ));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+    
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.disable()) // We're handling CORS with our custom filter
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS properly
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/auth/**").permitAll()
