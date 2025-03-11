@@ -1,5 +1,6 @@
 package com.jay.home.finmanapp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,10 @@ public class PlaidClient {
     private final String secret;
     private final String environment;
 
-    public PlaidClient(String clientId, String secret, String environment) {
+    public PlaidClient(
+            @Value("${plaid.client-id}") String clientId, 
+            @Value("${plaid.secret}") String secret, 
+            @Value("${plaid.environment}") String environment) {
         this.clientId = clientId;
         this.secret = secret;
         this.environment = environment;
