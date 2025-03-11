@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jay.home</groupId>
-    <artifactId>TradingbotV2</artifactId>
+    <artifactId>FinManApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TradingbotV2</name>
-    <description>TradingbotV2</description>
+    <name>FinManApp</name>
+    <description>Financial Management Application</description>
     <url/>
     <licenses>
         <license/>
