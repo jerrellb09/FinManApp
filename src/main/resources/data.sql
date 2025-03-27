@@ -2,23 +2,40 @@
 
 -- Insert default categories
 INSERT INTO categories (name, description, icon_url) VALUES 
-('Housing', 'Rent, mortgage, property taxes, utilities, home insurance, repairs', 'house-fill'),
-('Transportation', 'Car payments, gas, public transit, vehicle maintenance, insurance', 'car-front-fill'),
-('Food', 'Groceries, restaurants, meal delivery', 'basket-fill'),
-('Entertainment', 'Streaming services, events, activities', 'film'),
-('Healthcare', 'Insurance, medications, doctor visits', 'heart-pulse-fill'),
-('Personal', 'Clothing, personal care, haircuts', 'person-fill'),
-('Education', 'Tuition, books, courses, student loans', 'book-fill'),
-('Savings', 'Emergency fund, investments, retirement', 'piggy-bank-fill'),
-('Debt', 'Credit card payments, loans', 'credit-card-fill'),
-('Travel', 'Flights, accommodations, vacation expenses', 'airplane-fill'),
-('Shopping', 'Retail purchases, household items', 'bag-fill'),
-('Utilities', 'Electricity, water, gas, internet, phone', 'phone-fill'),
-('Gifts', 'Birthday, holiday, special occasions', 'gift-fill'),
-('Taxes', 'Income tax, property tax, other taxes', 'cash-stack'),
-('Insurance', 'Life, health, home, auto insurance', 'shield-fill'),
-('Subscriptions', 'Recurring subscriptions, memberships', 'calendar-check-fill'),
-('Other', 'Miscellaneous expenses that don't fit elsewhere', 'three-dots'),
+('Housing', 'Rent, mortgage, property taxes, utilities, home insurance, repairs', 'house-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Transportation', 'Car payments, gas, public transit, vehicle maintenance, insurance', 'car-front-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Food', 'Groceries, restaurants, meal delivery', 'basket-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Entertainment', 'Streaming services, events, activities', 'film');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Healthcare', 'Insurance, medications, doctor visits', 'heart-pulse-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Personal', 'Clothing, personal care, haircuts', 'person-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Education', 'Tuition, books, courses, student loans', 'book-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Savings', 'Emergency fund, investments, retirement', 'piggy-bank-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Debt', 'Credit card payments, loans', 'credit-card-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Travel', 'Flights, accommodations, vacation expenses', 'airplane-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Shopping', 'Retail purchases, household items', 'bag-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Utilities', 'Electricity, water, gas, internet, phone', 'phone-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Gifts', 'Birthday, holiday, special occasions', 'gift-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Taxes', 'Income tax, property tax, other taxes', 'cash-stack');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Insurance', 'Life, health, home, auto insurance', 'shield-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Subscriptions', 'Recurring subscriptions, memberships', 'calendar-check-fill');
+INSERT INTO categories (name, description, icon_url) VALUES
+('Other', 'Miscellaneous expenses that don''t fit elsewhere', 'three-dots');
+INSERT INTO categories (name, description, icon_url) VALUES
 ('Income', 'Salary, side hustle, investments, etc.', 'cash');
 
 -- Create test users with encrypted password (password123)

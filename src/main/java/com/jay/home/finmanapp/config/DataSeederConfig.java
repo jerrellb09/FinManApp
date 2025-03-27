@@ -57,6 +57,8 @@ public class DataSeederConfig {
                     
                     // Seed categories
                     seedCategories();
+
+
                     
                     // Seed users
                     User user1 = seedUser("test@example.com", "password", "Test", "User", new BigDecimal("5000.00"), 15);

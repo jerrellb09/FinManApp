@@ -52,6 +52,14 @@ public class BudgetService {
     public List<Budget> getUserBudgets(User user) {
         return budgetRepository.findByUser(user);
     }
+    
+    /**
+     * Alias for getUserBudgets for consistency with other service methods
+     */
+    @Transactional(readOnly = true)
+    public List<Budget> getBudgetsByUser(User user) {
+        return getUserBudgets(user);
+    }
 
     @Transactional(readOnly = true)
     public List<Budget> getActiveBudgets(User user) {

@@ -3,10 +3,7 @@ package com.jay.home.finmanapp.controller;
 import com.jay.home.finmanapp.model.Account;
 import com.jay.home.finmanapp.model.Category;
 import com.jay.home.finmanapp.model.User;
-import com.jay.home.finmanapp.service.AccountService;
-import com.jay.home.finmanapp.service.CategoryService;
-import com.jay.home.finmanapp.service.InsightService;
-import com.jay.home.finmanapp.service.UserService;
+import com.jay.home.finmanapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +22,20 @@ public class InsightController {
     private final UserService userService;
     private final AccountService accountService;
     private final CategoryService categoryService;
+    private final AIService aiService;
 
     @Autowired
     public InsightController(
             InsightService insightService,
             UserService userService,
             AccountService accountService,
-            CategoryService categoryService) {
+            CategoryService categoryService,
+            AIService aiService) {
         this.insightService = insightService;
         this.userService = userService;
         this.accountService = accountService;
         this.categoryService = categoryService;
+        this.aiService = aiService;
     }
 
     @GetMapping("/spending-by-category")
@@ -142,5 +142,33 @@ public class InsightController {
         User user = userService.getUserByEmail(userEmail);
         Map<String, Object> billsVsIncome = insightService.getBillsVsIncomeInsight(user.getId());
         return ResponseEntity.ok(billsVsIncome);
+    }
+    
+    /**
+     * AI-powered insights endpoints
+     */
+    
+    @GetMapping("/ai/financial-insights")
+    public ResponseEntity<Map<String, Object>> getAIFinancialInsights(
+            @AuthenticationPrincipal String userEmail) {
+        User user = userService.getUserByEmail(userEmail);
+        Map<String, Object> insights = aiService.generateFinancialInsights(user);
+        return ResponseEntity.ok(insights);
+    }
+    
+    @GetMapping("/ai/budget-suggestions")
+    public ResponseEntity<Map<String, Object>> getAIBudgetSuggestions(
+            @AuthenticationPrincipal String userEmail) {
+        User user = userService.getUserByEmail(userEmail);
+        Map<String, Object> suggestions = aiService.generateBudgetSuggestions(user);
+        return ResponseEntity.ok(suggestions);
+    }
+    
+    @GetMapping("/ai/spending-habits")
+    public ResponseEntity<Map<String, Object>> getAISpendingHabitsAnalysis(
+            @AuthenticationPrincipal String userEmail) {
+        User user = userService.getUserByEmail(userEmail);
+        Map<String, Object> analysis = aiService.analyzeSpendingHabits(user);
+        return ResponseEntity.ok(analysis);
     }
 }
