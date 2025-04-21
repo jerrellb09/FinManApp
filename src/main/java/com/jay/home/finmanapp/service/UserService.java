@@ -2,6 +2,8 @@ package com.jay.home.finmanapp.service;
 
 import com.jay.home.finmanapp.model.User;
 import com.jay.home.finmanapp.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -141,7 +145,15 @@ public class UserService implements UserDetailsService {
      */
     @Transactional(readOnly = true)
     public User getDemoUser() {
-        return userRepository.findByIsDemo(true).orElse(null);
+        try {
+            // First try using the isDemo flag if available (when column exists)
+            return userRepository.findByIsDemo(true).orElse(null);
+        } catch (Exception e) {
+            logger.warn("Error using isDemo flag (column may not exist yet): {}", e.getMessage());
+            // Fall back to email lookup if the isDemo column doesn't exist yet
+            // This is a temporary fallback until the migration completes
+            return userRepository.findByEmail("demo@finmanapp.com").orElse(null);
+        }
     }
     
     /**
