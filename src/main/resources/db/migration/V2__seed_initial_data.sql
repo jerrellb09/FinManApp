@@ -18,7 +18,7 @@ INSERT INTO categories (name, description, icon_url) VALUES
 ('Taxes', 'Income tax, property tax, other taxes', 'cash-stack'),
 ('Insurance', 'Life, health, home, auto insurance', 'shield-fill'),
 ('Subscriptions', 'Recurring subscriptions, memberships', 'calendar-check-fill'),
-('Other', 'Miscellaneous expenses that don't fit elsewhere', 'three-dots'),
+('Other', 'Miscellaneous expenses that don''t fit elsewhere', 'three-dots'),
 ('Income', 'Salary, side hustle, investments, etc.', 'cash');
 
 -- Create a test user with encrypted password (password = "password")
