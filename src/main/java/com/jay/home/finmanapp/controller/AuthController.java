@@ -194,11 +194,11 @@ public class AuthController {
                                   (sourceParam != null && sourceParam.contains("justjay.net"));
         
         // Commented out for easier testing, but should be uncommented in production
-        // if (!validReferer && !isDemoRequest && !validQueryParams) {
-        //     logger.warn("Demo login attempt from unauthorized source");
-        //     return ResponseEntity.status(HttpStatus.FORBIDDEN)
-        //             .body(Map.of("message", "Demo access is only available from justjay.net"));
-        // }
+        if (!validReferer && !isDemoRequest && !validQueryParams) {
+            logger.warn("Demo login attempt from unauthorized source");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("message", "Demo access is only available from justjay.net"));
+        }
         
         try {
             // Try to find the demo user
