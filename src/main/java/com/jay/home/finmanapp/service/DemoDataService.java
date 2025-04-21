@@ -486,29 +486,69 @@ public class DemoDataService {
      * 
      * @return true if successful, false otherwise
      */
-    @Transactional
+    @Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRES_NEW)
     public boolean initializeDemoUserData() {
         try {
-            // Get the demo user
-            User demoUser = userService.getDemoUser();
+            // First try to directly create/ensure demo user via JDBC (most reliable method)
+            boolean demoUserCreated = userService.ensureDemoUserExists();
+            if (!demoUserCreated) {
+                logger.error("Failed to create or verify demo user");
+                return false;
+            }
+            
+            // Get the demo user by email (most reliable way)
+            User demoUser = null;
+            try {
+                // Try to get directly from JDBC first
+                demoUser = userService.getDemoUserJdbc();
+            } catch (Exception e) {
+                logger.warn("Error getting demo user via JDBC: {}", e.getMessage());
+            }
+            
+            // Try JPA as fallback if needed
             if (demoUser == null) {
-                logger.error("Demo user not found");
+                try {
+                    demoUser = userService.getDemoUserByEmail();
+                } catch (Exception e) {
+                    logger.error("Failed to get demo user by email: {}", e.getMessage());
+                    return false;
+                }
+            }
+            
+            if (demoUser == null) {
+                logger.error("Demo user not found after creation attempts");
                 return false;
             }
             
             // Check if demo user already has accounts (indicating data exists)
-            List<Account> accounts = accountRepository.findByUser(demoUser);
-            if (!accounts.isEmpty()) {
-                logger.info("Demo user already has {} accounts. Skipping data initialization", accounts.size());
-                return true;
+            List<Account> accounts = null;
+            try {
+                accounts = accountRepository.findByUser(demoUser);
+                if (accounts != null && !accounts.isEmpty()) {
+                    logger.info("Demo user already has {} accounts. Skipping data initialization", accounts.size());
+                    return true;
+                }
+            } catch (Exception e) {
+                logger.warn("Error checking demo user accounts: {}", e.getMessage());
+                // Continue anyway to try creating the data
             }
             
-            // Initialize demo data
+            // Initialize demo data in a new transaction
             logger.info("Creating demo data for demo user with ID: {}", demoUser.getId());
-            return initializeDemoData(demoUser);
+            try {
+                return initializeDemoDataWithNewTransaction(demoUser);
+            } catch (Exception e) {
+                logger.error("Error initializing demo data: {}", e.getMessage(), e);
+                return false;
+            }
         } catch (Exception e) {
-            logger.error("Error initializing demo user data: {}", e.getMessage(), e);
+            logger.error("Error in demo user data initialization: {}", e.getMessage(), e);
             return false;
         }
+    }
+    
+    @Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRES_NEW)
+    public boolean initializeDemoDataWithNewTransaction(User demoUser) {
+        return initializeDemoData(demoUser);
     }
 }

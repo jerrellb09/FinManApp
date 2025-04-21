@@ -228,25 +228,54 @@ public class UserService implements UserDetailsService {
      */
     public boolean ensureDemoUserExists() {
         try {
-            // First check if demo user exists
-            User existingUser = getDemoUserJdbc();
-            if (existingUser != null) {
-                logger.info("Demo user already exists with ID: {}", existingUser.getId());
-                return true;
+            // First check if demo user exists by email (more reliable)
+            try {
+                String checkSql = "SELECT COUNT(*) FROM users WHERE email = 'demo@finmanapp.com'";
+                Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class);
+                if (count != null && count > 0) {
+                    logger.info("Demo user already exists by email");
+                    
+                    // Update the user to ensure it has is_demo=true if the column exists
+                    try {
+                        if (doesColumnExist("users", "is_demo")) {
+                            String updateSql = "UPDATE users SET is_demo = TRUE WHERE email = 'demo@finmanapp.com'";
+                            jdbcTemplate.execute(updateSql);
+                            logger.info("Updated demo user to set is_demo flag");
+                        }
+                    } catch (Exception e) {
+                        logger.warn("Failed to update is_demo flag: {}", e.getMessage());
+                    }
+                    
+                    return true;
+                }
+            } catch (Exception e) {
+                logger.warn("Error checking for existing demo user: {}", e.getMessage());
             }
             
             // Check if is_demo column exists
             boolean isDemoColumnExists = doesColumnExist("users", "is_demo");
             logger.info("is_demo column exists: {}", isDemoColumnExists);
             
-            // Add the is_demo column if it doesn't exist
+            // Add the is_demo column if it doesn't exist, but make it nullable first
             if (!isDemoColumnExists) {
                 try {
-                    String alterTableSql = "ALTER TABLE users ADD COLUMN is_demo BOOLEAN NOT NULL DEFAULT FALSE";
+                    // First add as nullable
+                    String alterTableSql = "ALTER TABLE users ADD COLUMN is_demo BOOLEAN";
                     jdbcTemplate.execute(alterTableSql);
                     logger.info("Added is_demo column to users table");
+                    
+                    // Set all existing users to false
+                    jdbcTemplate.execute("UPDATE users SET is_demo = FALSE WHERE is_demo IS NULL");
+                    logger.info("Updated existing users to have is_demo = FALSE");
+                    
+                    // Now make it non-nullable
+                    jdbcTemplate.execute("ALTER TABLE users ALTER COLUMN is_demo SET NOT NULL");
+                    jdbcTemplate.execute("ALTER TABLE users ALTER COLUMN is_demo SET DEFAULT FALSE");
+                    logger.info("Set is_demo column to NOT NULL with DEFAULT FALSE");
+                    
+                    isDemoColumnExists = true;
                 } catch (Exception e) {
-                    logger.warn("Failed to add is_demo column: {}", e.getMessage());
+                    logger.warn("Failed to add/update is_demo column: {}", e.getMessage());
                     // Continue anyway - we'll create the user without relying on this column
                 }
             }
@@ -255,30 +284,35 @@ public class UserService implements UserDetailsService {
             boolean monthlyIncomeExists = doesColumnExist("users", "monthly_income");
             boolean paydayDayExists = doesColumnExist("users", "payday_day");
             
-            // Construct the INSERT SQL based on available columns
-            StringBuilder sqlBuilder = new StringBuilder("INSERT INTO users (email, password, first_name, last_name");
+            // Try using UPSERT syntax for PostgreSQL to avoid conflicts
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.append("INSERT INTO users (email, password, first_name, last_name");
             if (isDemoColumnExists) sqlBuilder.append(", is_demo");
             if (monthlyIncomeExists) sqlBuilder.append(", monthly_income");
             if (paydayDayExists) sqlBuilder.append(", payday_day");
             sqlBuilder.append(") VALUES ('demo@finmanapp.com', ?, 'Demo', 'User'");
-            if (isDemoColumnExists) sqlBuilder.append(", true");
+            if (isDemoColumnExists) sqlBuilder.append(", TRUE");
             if (monthlyIncomeExists) sqlBuilder.append(", 5000.00");
             if (paydayDayExists) sqlBuilder.append(", 15");
-            sqlBuilder.append(")");
+            sqlBuilder.append(") ON CONFLICT (email) DO UPDATE SET ");
+            sqlBuilder.append("first_name = 'Demo', last_name = 'User'");
+            if (isDemoColumnExists) sqlBuilder.append(", is_demo = TRUE");
+            if (monthlyIncomeExists) sqlBuilder.append(", monthly_income = 5000.00");
+            if (paydayDayExists) sqlBuilder.append(", payday_day = 15");
             
             String sql = sqlBuilder.toString();
             logger.info("Creating demo user with SQL: {}", sql);
             
-            // Execute the insert
+            // Execute the insert/update
             int rowsAffected = jdbcTemplate.update(
                 sql,
                 passwordEncoder.encode("demo123")
             );
             
-            logger.info("Demo user created successfully: {} rows affected", rowsAffected);
-            return rowsAffected > 0;
+            logger.info("Demo user created/updated successfully: {} rows affected", rowsAffected);
+            return true; // Return true since we either updated or inserted
         } catch (Exception e) {
-            logger.error("Failed to ensure demo user exists: {}", e.getMessage());
+            logger.error("Failed to ensure demo user exists: {}", e.getMessage(), e);
             return false;
         }
     }

@@ -226,10 +226,13 @@ public class AuthController {
             
             // Ensure demo user has sample data
             try {
-                demoDataService.initializeDemoUserData();
+                boolean dataInitialized = demoDataService.initializeDemoUserData();
+                if (!dataInitialized) {
+                    logger.warn("Could not initialize demo data, but continuing with login");
+                }
             } catch (Exception e) {
                 // Log but don't fail if sample data can't be created
-                logger.warn("Could not initialize demo data: {}", e.getMessage());
+                logger.warn("Exception initializing demo data: {}", e.getMessage());
             }
             
             // Generate JWT token for demo user
