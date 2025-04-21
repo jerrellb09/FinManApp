@@ -159,9 +159,21 @@ public class BudgetController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
+        // Get current spending or default to zero if null
         BigDecimal currentSpending = budgetService.getCurrentSpending(budget, user.getAccounts().stream().toList());
-        BigDecimal percentage = currentSpending.divide(budget.getAmount(), 2).multiply(BigDecimal.valueOf(100));
-        BigDecimal remaining = budget.getAmount().subtract(currentSpending);
+        if (currentSpending == null) {
+            currentSpending = BigDecimal.ZERO;
+        }
+        
+        // Calculate percentage and remaining amount
+        BigDecimal percentage = BigDecimal.ZERO;
+        if (budget.getAmount() != null && budget.getAmount().compareTo(BigDecimal.ZERO) > 0) {
+            percentage = currentSpending.divide(budget.getAmount(), 2, BigDecimal.ROUND_HALF_UP)
+                .multiply(BigDecimal.valueOf(100));
+        }
+        
+        BigDecimal remaining = budget.getAmount() != null ? 
+            budget.getAmount().subtract(currentSpending) : BigDecimal.ZERO;
 
         Map<String, Object> response = Map.of(
                 "budgetId", budget.getId(),
