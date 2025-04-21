@@ -178,16 +178,24 @@ public class AuthController {
     @GetMapping("/demo-login")
     public ResponseEntity<?> demoLogin(
             @RequestHeader(value = "Referer", required = false) String referer,
-            @RequestHeader(value = "X-Demo-Request", required = false) String demoRequest) {
-        logger.info("Demo login attempt with referer: {}, X-Demo-Request: {}", referer, demoRequest);
+            @RequestHeader(value = "X-Demo-Request", required = false) String demoRequest,
+            @RequestParam(value = "demo", required = false) String demoParam,
+            @RequestParam(value = "source", required = false) String sourceParam) {
+        logger.info("Demo login attempt with referer: {}, X-Demo-Request: {}, demo: {}, source: {}", 
+                referer, demoRequest, demoParam, sourceParam);
         
-        // Validate the referer to ensure it's coming from justjay.net OR check for demo request header
+        // Multiple validation methods:
+        // 1. Check referer header (set by browser automatically)
+        // 2. Check X-Demo-Request header (set by our app)
+        // 3. Check query parameters (alternative approach)
         boolean validReferer = referer != null && referer.contains("justjay.net");
         boolean isDemoRequest = "true".equals(demoRequest);
+        boolean validQueryParams = "true".equals(demoParam) && 
+                                  (sourceParam != null && sourceParam.contains("justjay.net"));
         
         // Commented out for easier testing, but should be uncommented in production
-        // if (!validReferer && !isDemoRequest) {
-        //     logger.warn("Demo login attempt from unauthorized source: {}", referer);
+        // if (!validReferer && !isDemoRequest && !validQueryParams) {
+        //     logger.warn("Demo login attempt from unauthorized source");
         //     return ResponseEntity.status(HttpStatus.FORBIDDEN)
         //             .body(Map.of("message", "Demo access is only available from justjay.net"));
         // }
