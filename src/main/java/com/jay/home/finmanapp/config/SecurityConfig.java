@@ -106,7 +106,9 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200",
             "http://localhost:8080",
-            "https://fin-man-app.netlify.app" // Replace with your actual Netlify domain
+            "https://fin-man-app.netlify.app", // Your Netlify domain
+            "https://justjay.net",             // Allow justjay.net for demo mode
+            "http://justjay.net"               // Also allow non-https version
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

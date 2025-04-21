@@ -51,26 +51,50 @@ public class DataSeederConfig {
     public CommandLineRunner seedData() {
         return args -> {
             try {
-                // Only seed if the database is empty
-                if (userRepository.count() == 0) {
+                // Check if we need to create the demo user (always ensure it exists)
+                if (userRepository.findByIsDemo(true).isEmpty()) {
+                    System.out.println("Creating demo user account...");
+                    User demoUser = new User();
+                    demoUser.setEmail("demo@finmanapp.com");
+                    demoUser.setPassword(passwordEncoder.encode("demo123")); // Password won't be used directly
+                    demoUser.setFirstName("Demo");
+                    demoUser.setLastName("User");
+                    demoUser.setMonthlyIncome(new BigDecimal("5000.00"));
+                    demoUser.setPaydayDay(15);
+                    demoUser.setIsDemo(true);
+                    userRepository.save(demoUser);
+                    System.out.println("Demo user created successfully.");
+                } else {
+                    System.out.println("Demo user already exists.");
+                }
+                
+                // Only seed the rest if the database is empty
+                if (userRepository.count() <= 1) { // 1 = only the demo user
                     System.out.println("Seeding database with initial data...");
                     
                     // Seed categories
                     seedCategories();
-
-
                     
-                    // Seed users
+                    // Seed regular users
                     User user1 = seedUser("test@example.com", "password", "Test", "User", new BigDecimal("5000.00"), 15);
                     User user2 = seedUser("jane@example.com", "password", "Jane", "Smith", new BigDecimal("6500.00"), 1);
+                    
+                    // Get the demo user for seeding demo data
+                    User demoUser = userRepository.findByIsDemo(true).get();
                 
-                // Seed accounts
-                Account checking1 = seedAccount(user1, "Checking Account", "CHECKING", new BigDecimal("2500.00"), "acc_123456", "access_token_checking", "ins_12345", "Big Bank");
-                Account savings1 = seedAccount(user1, "Savings Account", "SAVINGS", new BigDecimal("10000.00"), "acc_789012", "access_token_savings", "ins_12345", "Big Bank");
-                Account creditCard1 = seedAccount(user1, "Credit Card", "CREDIT", new BigDecimal("-1500.00"), "acc_345678", "access_token_cc", "ins_67890", "Credit Bank");
+                    // Create demo accounts
+                    Account demoChecking = seedAccount(demoUser, "Demo Checking", "CHECKING", new BigDecimal("3200.00"), "acc_demo_checking", "access_token_demo", "ins_demo", "Demo Bank");
+                    Account demoSavings = seedAccount(demoUser, "Demo Savings", "SAVINGS", new BigDecimal("12500.00"), "acc_demo_savings", "access_token_demo", "ins_demo", "Demo Bank");
+                    Account demoCredit = seedAccount(demoUser, "Demo Credit Card", "CREDIT", new BigDecimal("-750.00"), "acc_demo_credit", "access_token_demo", "ins_demo", "Demo Credit Union");
+                    Account demoInvestment = seedAccount(demoUser, "Demo Investment", "INVESTMENT", new BigDecimal("25000.00"), "acc_demo_invest", "access_token_demo", "ins_demo", "Demo Investments");
                 
-                Account checking2 = seedAccount(user2, "Primary Checking", "CHECKING", new BigDecimal("3500.00"), "acc_jane123", "access_token_jane_checking", "ins_12345", "Big Bank");
-                Account savings2 = seedAccount(user2, "High-Yield Savings", "SAVINGS", new BigDecimal("15000.00"), "acc_jane456", "access_token_jane_savings", "ins_12345", "Big Bank");
+                    // Seed regular user accounts
+                    Account checking1 = seedAccount(user1, "Checking Account", "CHECKING", new BigDecimal("2500.00"), "acc_123456", "access_token_checking", "ins_12345", "Big Bank");
+                    Account savings1 = seedAccount(user1, "Savings Account", "SAVINGS", new BigDecimal("10000.00"), "acc_789012", "access_token_savings", "ins_12345", "Big Bank");
+                    Account creditCard1 = seedAccount(user1, "Credit Card", "CREDIT", new BigDecimal("-1500.00"), "acc_345678", "access_token_cc", "ins_67890", "Credit Bank");
+                    
+                    Account checking2 = seedAccount(user2, "Primary Checking", "CHECKING", new BigDecimal("3500.00"), "acc_jane123", "access_token_jane_checking", "ins_12345", "Big Bank");
+                    Account savings2 = seedAccount(user2, "High-Yield Savings", "SAVINGS", new BigDecimal("15000.00"), "acc_jane456", "access_token_jane_savings", "ins_12345", "Big Bank");
                 
                 // Get categories
                 Category housing = categoryRepository.findByName("Housing").orElse(null);
@@ -92,6 +116,16 @@ public class DataSeederConfig {
                 Budget food2 = seedBudget(user2, "Food Budget", new BigDecimal("600.00"), food, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("80.00"));
                 Budget transportation2 = seedBudget(user2, "Transportation", new BigDecimal("400.00"), transportation, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("85.00"));
                 
+                // Seed demo user budgets
+                Budget demoRent = seedBudget(demoUser, "Rent/Mortgage", new BigDecimal("1400.00"), housing, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("90.00"));
+                Budget demoGroceries = seedBudget(demoUser, "Groceries", new BigDecimal("550.00"), food, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("80.00"));
+                Budget demoEntertainment = seedBudget(demoUser, "Entertainment", new BigDecimal("250.00"), entertainment, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("85.00"));
+                Budget demoEatingOut = seedBudget(demoUser, "Dining Out", new BigDecimal("300.00"), food, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("75.00"));
+                Budget demoTransport = seedBudget(demoUser, "Transportation", new BigDecimal("350.00"), transportation, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("70.00"));
+                Budget demoShopping = seedBudget(demoUser, "Shopping", new BigDecimal("200.00"), shopping, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("60.00"));
+                Budget demoUtilities = seedBudget(demoUser, "Utilities", new BigDecimal("280.00"), utilities, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("85.00"));
+                Budget demoSubscriptions = seedBudget(demoUser, "Subscriptions", new BigDecimal("80.00"), subscriptions, "MONTHLY", LocalDate.now(), LocalDate.now().plusYears(1), new BigDecimal("90.00"));
+                
                 // Seed transactions for first user
                 seedTransaction(checking1, "tx_12345", "Whole Foods Market", new BigDecimal("-85.27"), LocalDateTime.now().minusDays(5), food, false);
                 seedTransaction(checking1, "tx_23456", "Amazon.com", new BigDecimal("-29.99"), LocalDateTime.now().minusDays(3), shopping, false);
@@ -109,6 +143,36 @@ public class DataSeederConfig {
                 seedTransaction(checking2, "tx_jane3", "Paycheck", new BigDecimal("3250.00"), LocalDateTime.now().minusDays(15), income, false);
                 seedTransaction(savings2, "tx_jane4", "Interest Earned", new BigDecimal("12.50"), LocalDateTime.now().minusDays(1), income, false);
                 
+                // Seed demo user transactions
+                // Recent transactions (last 7 days)
+                seedTransaction(demoChecking, "tx_demo_1", "Whole Foods", new BigDecimal("-112.45"), LocalDateTime.now().minusDays(2), food, false);
+                seedTransaction(demoChecking, "tx_demo_2", "Amazon.com", new BigDecimal("-47.99"), LocalDateTime.now().minusDays(3), shopping, false);
+                seedTransaction(demoChecking, "tx_demo_3", "Shell Gas", new BigDecimal("-42.50"), LocalDateTime.now().minusDays(1), transportation, false);
+                seedTransaction(demoChecking, "tx_demo_4", "Netflix", new BigDecimal("-14.99"), LocalDateTime.now().minusDays(5), subscriptions, false);
+                seedTransaction(demoCredit, "tx_demo_5", "Starbucks", new BigDecimal("-6.75"), LocalDateTime.now().minusDays(1), food, false);
+                seedTransaction(demoCredit, "tx_demo_6", "Uber", new BigDecimal("-18.45"), LocalDateTime.now().minusDays(2), transportation, false);
+                seedTransaction(demoCredit, "tx_demo_7", "Apple Music", new BigDecimal("-9.99"), LocalDateTime.now().minusDays(4), subscriptions, false);
+                
+                // Older transactions (8-30 days ago)
+                seedTransaction(demoChecking, "tx_demo_8", "Phone Bill", new BigDecimal("-85.00"), LocalDateTime.now().minusDays(15), utilities, false);
+                seedTransaction(demoChecking, "tx_demo_9", "Internet", new BigDecimal("-75.00"), LocalDateTime.now().minusDays(15), utilities, false);
+                seedTransaction(demoChecking, "tx_demo_10", "Rent Payment", new BigDecimal("-1400.00"), LocalDateTime.now().minusDays(30), housing, false);
+                seedTransaction(demoChecking, "tx_demo_11", "Salary Deposit", new BigDecimal("5000.00"), LocalDateTime.now().minusDays(15), income, false);
+                seedTransaction(demoChecking, "tx_demo_12", "Gym Membership", new BigDecimal("-45.00"), LocalDateTime.now().minusDays(10), subscriptions, false);
+                seedTransaction(demoSavings, "tx_demo_13", "Transfer from Checking", new BigDecimal("500.00"), LocalDateTime.now().minusDays(15), income, false);
+                seedTransaction(demoSavings, "tx_demo_14", "Interest Payment", new BigDecimal("10.25"), LocalDateTime.now().minusDays(1), income, false);
+                
+                // More transactions to show patterns (31-90 days)
+                seedTransaction(demoChecking, "tx_demo_15", "Whole Foods", new BigDecimal("-105.32"), LocalDateTime.now().minusDays(32), food, false);
+                seedTransaction(demoChecking, "tx_demo_16", "Shell Gas", new BigDecimal("-44.25"), LocalDateTime.now().minusDays(31), transportation, false);
+                seedTransaction(demoChecking, "tx_demo_17", "Rent Payment", new BigDecimal("-1400.00"), LocalDateTime.now().minusDays(60), housing, false);
+                seedTransaction(demoChecking, "tx_demo_18", "Salary Deposit", new BigDecimal("5000.00"), LocalDateTime.now().minusDays(45), income, false);
+                seedTransaction(demoChecking, "tx_demo_19", "Electric Bill", new BigDecimal("-95.00"), LocalDateTime.now().minusDays(45), utilities, false);
+                seedTransaction(demoChecking, "tx_demo_20", "Car Insurance", new BigDecimal("-120.00"), LocalDateTime.now().minusDays(40), transportation, false);
+                seedTransaction(demoCredit, "tx_demo_21", "Amazon.com", new BigDecimal("-65.49"), LocalDateTime.now().minusDays(35), shopping, false);
+                seedTransaction(demoCredit, "tx_demo_22", "Restaurant", new BigDecimal("-78.25"), LocalDateTime.now().minusDays(38), food, false);
+                seedTransaction(demoSavings, "tx_demo_23", "Transfer from Checking", new BigDecimal("500.00"), LocalDateTime.now().minusDays(45), income, false);
+                
                 // Seed bills
                 seedBill(user1, "Rent", new BigDecimal("1200.00"), 1, true, true, housing);
                 seedBill(user1, "Electricity", new BigDecimal("75.00"), 15, false, true, utilities);
@@ -122,6 +186,17 @@ public class DataSeederConfig {
                 seedBill(user2, "Water & Sewage", new BigDecimal("45.00"), 18, false, true, utilities);
                 seedBill(user2, "Internet & Cable", new BigDecimal("120.00"), 22, false, true, utilities);
                 seedBill(user2, "Streaming Services", new BigDecimal("35.99"), 25, false, true, subscriptions);
+                
+                // Seed demo user bills
+                seedBill(demoUser, "Rent/Mortgage", new BigDecimal("1400.00"), 1, true, true, housing);
+                seedBill(demoUser, "Electricity", new BigDecimal("95.00"), 15, false, true, utilities);
+                seedBill(demoUser, "Water", new BigDecimal("45.00"), 18, false, true, utilities);
+                seedBill(demoUser, "Internet", new BigDecimal("75.00"), 20, false, true, utilities);
+                seedBill(demoUser, "Phone", new BigDecimal("85.00"), 5, true, true, utilities);
+                seedBill(demoUser, "Netflix", new BigDecimal("14.99"), 7, false, true, subscriptions);
+                seedBill(demoUser, "Spotify", new BigDecimal("9.99"), 10, false, true, subscriptions);
+                seedBill(demoUser, "Gym Membership", new BigDecimal("45.00"), 12, false, true, subscriptions);
+                seedBill(demoUser, "Car Insurance", new BigDecimal("120.00"), 25, false, true, transportation);
                 
                 System.out.println("Database seeding completed successfully.");
                 } else {

@@ -132,4 +132,48 @@ public class UserService implements UserDetailsService {
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
+    
+    /**
+     * Retrieves the demo user account.
+     * This account is used for the demo mode functionality.
+     * 
+     * @return The demo user or null if no demo user exists
+     */
+    @Transactional(readOnly = true)
+    public User getDemoUser() {
+        return userRepository.findByIsDemo(true).orElse(null);
+    }
+    
+    /**
+     * Creates or updates the demo user account with sample data.
+     * This method is called during application initialization to ensure
+     * a demo account is always available.
+     * 
+     * @return The created or updated demo user
+     */
+    @Transactional
+    public User setupDemoUser() {
+        // Check if demo user already exists
+        User demoUser = userRepository.findByIsDemo(true).orElse(null);
+        
+        if (demoUser == null) {
+            // Create new demo user
+            demoUser = new User();
+            demoUser.setEmail("demo@finmanapp.com");
+            demoUser.setPassword(passwordEncoder.encode("demo123")); // This password won't be used directly
+            demoUser.setFirstName("Demo");
+            demoUser.setLastName("User");
+            demoUser.setIsDemo(true);
+            demoUser.setMonthlyIncome(new java.math.BigDecimal("5000.00"));
+            demoUser.setPaydayDay(15);
+        } else {
+            // Update existing demo user if needed
+            demoUser.setFirstName("Demo");
+            demoUser.setLastName("User");
+            demoUser.setMonthlyIncome(new java.math.BigDecimal("5000.00"));
+            demoUser.setPaydayDay(15);
+        }
+        
+        return userRepository.save(demoUser);
+    }
 }

@@ -39,4 +39,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return true if a user with the email exists, false otherwise
      */
     boolean existsByEmail(String email);
+    
+    /**
+     * Finds a user marked as demo user.
+     * 
+     * Used for demo mode functionality to retrieve the dedicated demo account.
+     * 
+     * @param isDemo Boolean flag indicating if the user is a demo user
+     * @return An Optional containing the demo user if found, or empty if no demo user exists
+     */
+    Optional<User> findByIsDemo(Boolean isDemo);
 }

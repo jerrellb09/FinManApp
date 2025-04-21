@@ -79,6 +79,13 @@ public class User {
      */
     @Column
     private Integer paydayDay;
+    
+    /**
+     * Flag to indicate if this is a demo user.
+     * Demo users have special permissions and limitations.
+     */
+    @Column(nullable = false)
+    private Boolean isDemo = false;
 
     /**
      * Set of financial accounts associated with this user.

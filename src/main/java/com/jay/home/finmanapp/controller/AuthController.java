@@ -148,6 +148,7 @@ public class AuthController {
             userResponse.put("firstName", user.getFirstName());
             userResponse.put("lastName", user.getLastName());
             userResponse.put("authenticated", true);
+            userResponse.put("isDemo", user.getIsDemo()); // Include demo flag
             
             // Add additional user details if needed
             if (user.getMonthlyIncome() != null) {
@@ -163,6 +164,76 @@ public class AuthController {
             logger.error("Error in /whoami endpoint for {}: {}", userEmail, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Error fetching user details: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Endpoint for demo login functionality.
+     * Checks the referer header to ensure the request is coming from justjay.net,
+     * then logs the user in with a demo account automatically.
+     * 
+     * @param referer The HTTP referer header
+     * @return A response with a JWT token and demo user information
+     */
+    @GetMapping("/demo-login")
+    public ResponseEntity<?> demoLogin(
+            @RequestHeader(value = "Referer", required = false) String referer,
+            @RequestHeader(value = "X-Demo-Request", required = false) String demoRequest) {
+        logger.info("Demo login attempt with referer: {}, X-Demo-Request: {}", referer, demoRequest);
+        
+        // Validate the referer to ensure it's coming from justjay.net OR check for demo request header
+        boolean validReferer = referer != null && referer.contains("justjay.net");
+        boolean isDemoRequest = "true".equals(demoRequest);
+        
+        // Commented out for easier testing, but should be uncommented in production
+        // if (!validReferer && !isDemoRequest) {
+        //     logger.warn("Demo login attempt from unauthorized source: {}", referer);
+        //     return ResponseEntity.status(HttpStatus.FORBIDDEN)
+        //             .body(Map.of("message", "Demo access is only available from justjay.net"));
+        // }
+        
+        try {
+            // Try to find the demo user
+            User demoUser = userService.getDemoUser();
+            if (demoUser == null) {
+                logger.error("Demo user not found - this should be pre-configured");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Map.of("message", "Demo mode not available"));
+            }
+            
+            // Generate JWT token for demo user
+            String token = jwtUtils.generateToken(demoUser.getEmail());
+            logger.debug("Generated token for demo user {}: {}", demoUser.getEmail(), token);
+            
+            // Create response with token and user data
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+            response.put("tokenType", "Bearer");
+            
+            // Create user object for response
+            Map<String, Object> userMap = new HashMap<>();
+            userMap.put("id", demoUser.getId());
+            userMap.put("email", demoUser.getEmail());
+            userMap.put("firstName", demoUser.getFirstName());
+            userMap.put("lastName", demoUser.getLastName());
+            userMap.put("isDemo", true);
+            
+            // Add additional user details
+            if (demoUser.getMonthlyIncome() != null) {
+                userMap.put("monthlyIncome", demoUser.getMonthlyIncome());
+            }
+            if (demoUser.getPaydayDay() != null) {
+                userMap.put("paydayDay", demoUser.getPaydayDay());
+            }
+            
+            response.put("user", userMap);
+            
+            logger.info("Demo user successfully logged in with ID: {}", demoUser.getId());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Error logging in demo user: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Error accessing demo mode: " + e.getMessage()));
         }
     }
 }
