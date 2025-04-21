@@ -31,6 +31,14 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
     List<Bill> findByUserId(Long userId);
     
     /**
+     * Finds all bills associated with a specific user.
+     *
+     * @param user The user whose bills to retrieve
+     * @return A list of all bills owned by the specified user
+     */
+    List<Bill> findByUser(com.jay.home.finmanapp.model.User user);
+    
+    /**
      * Finds bills for a user filtered by payment status.
      *
      * @param userId The ID of the user whose bills to retrieve

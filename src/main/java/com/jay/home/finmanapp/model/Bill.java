@@ -63,14 +63,33 @@ public class Bill {
      * Reset to false when a new payment cycle begins.
      */
     @Column(nullable = false)
-    private boolean isPaid;
+    private boolean isPaid = false;
     
     /**
      * Flag indicating whether this bill recurs regularly.
      * True for monthly bills like rent, false for one-time payments.
      */
     @Column(nullable = false)
-    private boolean isRecurring;
+    private boolean isRecurring = true;
+    
+    /**
+     * The recurring period of the bill.
+     * Values: WEEKLY, MONTHLY, QUARTERLY, ANNUALLY, etc.
+     */
+    @Column
+    private String recurringPeriod = "MONTHLY";
+    
+    /**
+     * Flag indicating whether this bill is set up for automatic payment.
+     */
+    @Column
+    private boolean autoPay = false;
+    
+    /**
+     * Additional description or notes about the bill.
+     */
+    @Column
+    private String description;
 
     /**
      * The user who owns this bill.

@@ -3,6 +3,7 @@ package com.jay.home.finmanapp.controller;
 import com.jay.home.finmanapp.model.User;
 import com.jay.home.finmanapp.security.JwtUtils;
 import com.jay.home.finmanapp.service.UserService;
+import com.jay.home.finmanapp.service.DemoDataService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,15 @@ public class AuthController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
+    private final DemoDataService demoDataService;
 
     @Autowired
-    public AuthController(UserService userService, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
+    public AuthController(UserService userService, PasswordEncoder passwordEncoder, 
+                          JwtUtils jwtUtils, DemoDataService demoDataService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtils = jwtUtils;
+        this.demoDataService = demoDataService;
     }
 
     @PostMapping("/login")
@@ -201,12 +205,31 @@ public class AuthController {
         }
         
         try {
-            // Try to find the demo user
+            // Try to find the demo user using our robust methods
             User demoUser = userService.getDemoUser();
+            
+            // If demo user doesn't exist, try to create one on the fly
             if (demoUser == null) {
-                logger.error("Demo user not found - this should be pre-configured");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(Map.of("message", "Demo mode not available"));
+                logger.warn("Demo user not found - attempting to create one on the fly");
+                boolean created = userService.ensureDemoUserExists();
+                
+                if (created) {
+                    demoUser = userService.getDemoUserJdbc();
+                }
+                
+                if (demoUser == null) {
+                    logger.error("Failed to create demo user - demo mode not available");
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .body(Map.of("message", "Demo mode not available"));
+                }
+            }
+            
+            // Ensure demo user has sample data
+            try {
+                demoDataService.initializeDemoUserData();
+            } catch (Exception e) {
+                // Log but don't fail if sample data can't be created
+                logger.warn("Could not initialize demo data: {}", e.getMessage());
             }
             
             // Generate JWT token for demo user

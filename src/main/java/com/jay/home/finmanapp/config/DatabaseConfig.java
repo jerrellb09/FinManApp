@@ -1,5 +1,10 @@
 package com.jay.home.finmanapp.config;
 
+import com.jay.home.finmanapp.model.User;
+import com.jay.home.finmanapp.service.UserService;
+import com.jay.home.finmanapp.service.DemoDataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -17,12 +22,19 @@ import java.util.Arrays;
 
 @Configuration
 public class DatabaseConfig {
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseConfig.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
     @Autowired
     private Environment env;
+    
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private DemoDataService demoDataService;
     
     @EventListener(ApplicationStartedEvent.class)
     public void checkDatabaseBeforeStartup() {
@@ -95,22 +107,75 @@ public class DatabaseConfig {
         try {
             // Basic validation query to check database connection
             String dbType = isH2 ? "H2" : "PostgreSQL";
-            System.out.println("Connected to " + dbType + " database");
+            logger.info("Connected to {} database", dbType);
             
             // For PostgreSQL, we need to handle schemas differently
             if (!isH2) {
                 // Check if we need to set up the PostgreSQL database
                 try {
                     jdbcTemplate.queryForObject("SELECT COUNT(*) FROM pg_catalog.pg_tables WHERE schemaname = 'public'", Integer.class);
-                    System.out.println("PostgreSQL schema exists and is accessible.");
+                    logger.info("PostgreSQL schema exists and is accessible.");
                 } catch (Exception e) {
-                    System.out.println("Setting up PostgreSQL schema...");
+                    logger.info("Setting up PostgreSQL schema...");
                     // This is just a placeholder, JPA will handle schema creation
                 }
             }
+            
+            // Ensure the demo user exists for demo mode functionality
+            ensureDemoUser();
         } catch (Exception e) {
-            System.err.println("Error initializing database: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error initializing database: {}", e.getMessage(), e);
+        }
+    }
+    
+    /**
+     * Ensures that a demo user exists in the database.
+     * This is crucial for the demo mode functionality.
+     */
+    private void ensureDemoUser() {
+        try {
+            logger.info("Ensuring demo user exists...");
+            
+            // First try the JDBC direct approach
+            boolean demoUserCreated = userService.ensureDemoUserExists();
+            
+            if (demoUserCreated) {
+                logger.info("Demo user successfully created or verified via JDBC");
+            } else {
+                // If JDBC approach failed, try JPA
+                logger.info("Attempting to create demo user via JPA...");
+                User demoUser = userService.setupDemoUser();
+                
+                if (demoUser == null) {
+                    logger.warn("Failed to create or verify demo user");
+                    return;
+                }
+                
+                logger.info("Demo user successfully created or verified via JPA with ID: {}", demoUser.getId());
+            }
+            
+            // Once demo user exists, initialize demo data for this user
+            initializeDemoData();
+        } catch (Exception e) {
+            logger.error("Error ensuring demo user exists: {}", e.getMessage(), e);
+        }
+    }
+    
+    /**
+     * Initializes demo data for the demo user account.
+     */
+    private void initializeDemoData() {
+        try {
+            logger.info("Initializing demo data...");
+            boolean initialized = demoDataService.initializeDemoUserData();
+            
+            if (initialized) {
+                logger.info("Demo data successfully initialized");
+            } else {
+                logger.warn("Failed to initialize demo data");
+            }
+        } catch (Exception e) {
+            logger.error("Error initializing demo data: {}", e.getMessage(), e);
         }
     }
 }

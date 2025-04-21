@@ -71,6 +71,7 @@ public class Account {
     /**
      * Access token for the financial data integration.
      * Used for authenticating API requests to the external service.
+     * For demo accounts, this will be a placeholder value.
      */
     @Column(nullable = false)
     private String accessToken;
