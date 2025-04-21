@@ -1,5 +1,13 @@
--- Add is_demo column to users table
-ALTER TABLE users ADD COLUMN is_demo BOOLEAN NOT NULL DEFAULT FALSE;
+-- Add is_demo column to users table if it doesn't exist
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT FROM information_schema.columns 
+        WHERE table_name = 'users' AND column_name = 'is_demo'
+    ) THEN
+        ALTER TABLE users ADD COLUMN is_demo BOOLEAN NOT NULL DEFAULT FALSE;
+    END IF;
+END $$;
 
 -- Create a demo user if it doesn't exist already
 INSERT INTO users (email, password, first_name, last_name, monthly_income, payday_day, is_demo)
