@@ -3,11 +3,11 @@ version: '3.8'
 services:
   postgres:
     image: postgres:14-alpine
-    container_name: tradingbotv2-postgres
+    container_name: finmanapp-postgres
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: tradingbotv2
+      POSTGRES_DB: finmanapp
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
@@ -15,7 +15,7 @@ services:
       - ./init-db:/docker-entrypoint-initdb.d
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d tradingbotv2"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d finmanapp"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -45,6 +45,51 @@ services:
     container_name: gemma2
     ports:
       - "11435:11435"
+      
+  # FinManApp service
+  finmanapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finmanapp
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/finmanapp
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - LLAMA3_API_URL=http://llama3:8080
+      - DD_AGENT_HOST=datadog-agent
+      - DD_TRACE_ENABLED=true
+      - DD_LOGS_INJECTION=true
+      - DD_PROFILING_ENABLED=true
+      - DD_SERVICE=finmanapp
+      - DD_ENV=dev
+      - DD_VERSION=0.0.1
+    depends_on:
+      - postgres
+      - datadog-agent
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "java", "service": "finmanapp"}]'
+      
+  # Datadog Agent
+  datadog-agent:
+    image: datadog/agent:latest
+    container_name: datadog-agent
+    environment:
+      - DD_API_KEY=8f478971895258597575fa486c29ffdf
+      - DD_LOGS_ENABLED=true
+      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+      - DD_CONTAINER_EXCLUDE_LOGS=name:datadog-agent
+      - DD_APM_ENABLED=true
+      - DD_APM_NON_LOCAL_TRAFFIC=true
+      - DD_SITE=us5.datadoghq.com
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+    ports:
+      - "8126:8126"
 
 volumes:
   postgres_data:

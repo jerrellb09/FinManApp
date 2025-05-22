@@ -7,7 +7,7 @@ if ! command -v psql &> /dev/null; then
 fi
 
 # Set the PostgreSQL connection parameters
-DB_NAME="tradingbotv2"
+DB_NAME="finmanapp"
 DB_USER="postgres"
 DB_PASSWORD="postgres"
 

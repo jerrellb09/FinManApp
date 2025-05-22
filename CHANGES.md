@@ -1,4 +1,4 @@
-# Changes Made to TradingBotV2
+# Changes Made to FinManApp
 
 ## Database Migration from H2 to PostgreSQL
 

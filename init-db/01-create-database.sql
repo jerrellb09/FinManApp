@@ -1,8 +1,8 @@
 -- Create the database if it doesn't exist
-CREATE DATABASE tradingbotv2 WITH OWNER postgres;
+CREATE DATABASE finmanapp WITH OWNER postgres;
 
 -- Connect to the database
-\c tradingbotv2
+\c finmanapp
 
 -- Create necessary extensions
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

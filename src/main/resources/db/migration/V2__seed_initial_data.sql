@@ -1,4 +1,4 @@
--- Seed data for TradingBotV2 application
+-- Seed data for FinManApp application
 
 -- Insert default categories with safety check to avoid duplicates
 DO $$ 

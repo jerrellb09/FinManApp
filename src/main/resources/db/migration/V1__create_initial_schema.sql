@@ -1,4 +1,4 @@
--- Initial database schema for TradingBotV2 application
+-- Initial database schema for FinManApp application
 
 -- Create users table
 CREATE TABLE users (

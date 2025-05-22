@@ -63,7 +63,7 @@ This option requires Docker to be installed.
 ```
 
 This creates a Docker container with:
-- Database: tradingbotv2
+- Database: finmanapp
 - Username: postgres
 - Password: postgres
 - Port: 5432
@@ -77,7 +77,7 @@ This creates a Docker container with:
 
 ### Troubleshooting PostgreSQL Connection Issues
 
-If you see the error "database 'tradingbotv2' does not exist", run the fix script:
+If you see the error "database 'finmanapp' does not exist", run the fix script:
 
 ```bash
 ./fix-postgres.sh

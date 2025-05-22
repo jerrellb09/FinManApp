@@ -1,19 +1,19 @@
 #!/bin/bash
 
-echo "Starting TradingBotV2 application..."
+echo "Starting FinManApp application..."
 
 # Check if Docker is installed
 if command -v docker > /dev/null 2>&1 && command -v docker-compose > /dev/null 2>&1; then
     echo "Docker and Docker Compose found. Starting PostgreSQL database..."
     
     # Check if the container is already running
-    if [ "$(docker ps -q -f name=tradingbotv2-postgres)" ]; then
+    if [ "$(docker ps -q -f name=finmanapp-postgres)" ]; then
         echo "PostgreSQL container is already running."
     else
         # Check if container exists but is stopped
-        if [ "$(docker ps -aq -f name=tradingbotv2-postgres)" ]; then
+        if [ "$(docker ps -aq -f name=finmanapp-postgres)" ]; then
             echo "Starting existing PostgreSQL container..."
-            docker start tradingbotv2-postgres
+            docker start finmanapp-postgres
         else
             echo "Creating and starting new PostgreSQL container..."
             docker-compose up -d
@@ -23,7 +23,7 @@ if command -v docker > /dev/null 2>&1 && command -v docker-compose > /dev/null 2
     # Wait for PostgreSQL to be ready
     echo "Waiting for PostgreSQL to be ready..."
     RETRIES=10
-    until docker exec tradingbotv2-postgres pg_isready -U postgres -d postgres || [ $RETRIES -eq 0 ]; do
+    until docker exec finmanapp-postgres pg_isready -U postgres -d postgres || [ $RETRIES -eq 0 ]; do
         echo "Waiting for postgres server to be ready, $RETRIES retries left..."
         RETRIES=$((RETRIES-1))
         sleep 2
@@ -36,9 +36,9 @@ if command -v docker > /dev/null 2>&1 && command -v docker-compose > /dev/null 2
     fi
     
     # Ensure the database exists
-    echo "Ensuring database 'tradingbotv2' exists..."
-    docker exec tradingbotv2-postgres psql -U postgres -c "SELECT 1 FROM pg_database WHERE datname = 'tradingbotv2'" | grep -q 1 || \
-    docker exec tradingbotv2-postgres psql -U postgres -c "CREATE DATABASE tradingbotv2"
+    echo "Ensuring database 'finmanapp' exists..."
+    docker exec finmanapp-postgres psql -U postgres -c "SELECT 1 FROM pg_database WHERE datname = 'finmanapp'" | grep -q 1 || \
+    docker exec finmanapp-postgres psql -U postgres -c "CREATE DATABASE finmanapp"
     
     # Start the application with PostgreSQL
     echo "Starting application with PostgreSQL database..."

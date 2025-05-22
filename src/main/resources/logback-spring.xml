@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <!-- JSON Log Format -->
+    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdcKeyName>trace.id</includeMdcKeyName>
+            <includeMdcKeyName>span.id</includeMdcKeyName>
+        </encoder>
+    </appender>
+
+    <!-- Async appender to improve performance -->
+    <appender name="ASYNC_JSON_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>true</includeCallerData>
+        <appender-ref ref="JSON_CONSOLE" />
+    </appender>
+
+    <!-- Set logging levels -->
+    <logger name="com.jay.home.finmanapp" level="DEBUG" />
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.hibernate" level="INFO" />
+
+    <!-- Root logger configuration -->
+    <root level="INFO">
+        <appender-ref ref="ASYNC_JSON_CONSOLE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

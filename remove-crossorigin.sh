@@ -2,14 +2,14 @@
 
 # Array of controller files to modify
 CONTROLLERS=(
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/AccountController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/AuthController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/BillController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/BudgetController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/CategoryController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/InsightController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/TransactionController.java"
-  "/Users/jerrell/repos/TradingbotV2/src/main/java/com/jay/home/tradingbotv2/controller/UserController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/AccountController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/AuthController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/BillController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/BudgetController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/CategoryController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/InsightController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/TransactionController.java"
+  "/Users/jerrell/repos/FinManApp/src/main/java/com/jay/home/finmanapp/controller/UserController.java"
 )
 
 # Process each controller file

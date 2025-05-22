@@ -36,7 +36,7 @@ public class DatabaseConnectionTest {
         System.out.println("Testing direct PostgreSQL connection...");
         
         // Use application properties if available, otherwise use defaults
-        String url = env.getProperty("spring.datasource.url", "jdbc:postgresql://localhost:5432/tradingbotv2");
+        String url = env.getProperty("spring.datasource.url", "jdbc:postgresql://localhost:5432/finmanapp");
         String username = env.getProperty("spring.datasource.username", "postgres");
         String password = env.getProperty("spring.datasource.password", "postgres");
         

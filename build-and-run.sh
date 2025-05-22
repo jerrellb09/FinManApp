@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Building TradingbotV2 with Maven..."
+echo "Building FinManApp with Maven..."
 ./mvnw clean package -DskipTests
 
 echo "Starting the application..."
-java -jar target/tradingbot-v2-0.0.1-SNAPSHOT.jar
+java -jar target/finmanapp-0.0.1-SNAPSHOT.jar

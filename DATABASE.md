@@ -1,6 +1,6 @@
-# Database Setup for TradingbotV2
+# Database Setup for FinManApp
 
-This document explains the database options for the TradingbotV2 application.
+This document explains the database options for the FinManApp application.
 
 ## Option 1: Using PostgreSQL (Recommended for Production)
 
@@ -21,7 +21,7 @@ PostgreSQL provides a persistent database solution ideal for production use.
 ### Manual Setup (if Docker is not available):
 
 1. Install PostgreSQL on your system
-2. Create a database named `tradingbotv2`
+2. Create a database named `finmanapp`
 3. Update the connection details in `application.properties` if needed
 
 ## Option 2: Using H2 Database (For Development Only)
@@ -45,7 +45,7 @@ If you encounter the error "database does not exist", try the following:
 1. Run the fix script: `./fix-postgres.sh`
 2. Manually create the database:
    ```sql
-   CREATE DATABASE tradingbotv2;
+   CREATE DATABASE finmanapp;
    ```
 3. Fall back to H2 for development (once fixed)
 
