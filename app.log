@@ -2963,3 +2963,743 @@ org.hibernate.LazyInitializationException: failed to lazily initialize a collect
 {"@timestamp":"2025-05-21T22:26:35.92337-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m58s476ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
 2025-05-21T22:44:09.275-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m33s247ms).
 {"@timestamp":"2025-05-21T22:44:09.275192-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m33s247ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-21T22:54:54.894-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s552ms).
+{"@timestamp":"2025-05-21T22:54:54.894255-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s552ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T00:01:40.820-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m45s926ms).
+{"@timestamp":"2025-05-22T00:01:40.820237-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m45s926ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T01:14:02.203-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h12m21s383ms).
+{"@timestamp":"2025-05-22T01:14:02.203883-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h12m21s383ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T01:15:04.301-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m2s99ms).
+{"@timestamp":"2025-05-22T01:15:04.301778-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m2s99ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T01:20:22.956-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m48s644ms).
+{"@timestamp":"2025-05-22T01:20:22.956451-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m48s644ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T01:38:14.240-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m51s285ms).
+{"@timestamp":"2025-05-22T01:38:14.240288-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m51s285ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T01:52:13.294-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m29s43ms).
+{"@timestamp":"2025-05-22T01:52:13.294532-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m29s43ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T02:02:12.423-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m29s66ms).
+{"@timestamp":"2025-05-22T02:02:12.423033-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m29s66ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T02:08:10.898-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m28s465ms).
+{"@timestamp":"2025-05-22T02:08:10.898078-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m28s465ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T02:24:09.892-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s984ms).
+{"@timestamp":"2025-05-22T02:24:09.892752-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s984ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T02:40:08.848-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s967ms).
+{"@timestamp":"2025-05-22T02:40:08.848646-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s967ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T02:55:37.832-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s984ms).
+{"@timestamp":"2025-05-22T02:55:37.8323-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s984ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T03:11:36.331-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s520ms).
+{"@timestamp":"2025-05-22T03:11:36.331109-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s520ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T03:22:16.895-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T03:22:16.895108-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T03:22:16.911-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T03:22:16.911684-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+2025-05-22T03:22:16.919-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T03:22:16.919906-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
+2025-05-22T04:00:00.105-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T04:00:00.10503-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T04:00:00.123-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T04:00:00.123421-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+2025-05-22T04:00:00.130-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T04:00:00.130095-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
+2025-05-22T04:27:46.540-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m9s323ms).
+{"@timestamp":"2025-05-22T04:27:46.540894-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m9s323ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T04:43:45.502-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s974ms).
+{"@timestamp":"2025-05-22T04:43:45.502006-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m28s974ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T04:48:41.738-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m56s238ms).
+{"@timestamp":"2025-05-22T04:48:41.738876-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m56s238ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T04:53:20.513-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m8s765ms).
+{"@timestamp":"2025-05-22T04:53:20.513856-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m8s765ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T05:11:39.536-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m49s12ms).
+{"@timestamp":"2025-05-22T05:11:39.536646-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m49s12ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T05:15:04.440-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s875ms).
+{"@timestamp":"2025-05-22T05:15:04.440168-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s875ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T05:16:51.975-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m17s523ms).
+{"@timestamp":"2025-05-22T05:16:51.975348-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m17s523ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T05:33:35.117-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m43s142ms).
+{"@timestamp":"2025-05-22T05:33:35.117594-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m43s142ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T05:50:41.155-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m36s31ms).
+{"@timestamp":"2025-05-22T05:50:41.155302-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m36s31ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T06:10:26.229-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m45s11ms).
+{"@timestamp":"2025-05-22T06:10:26.229022-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m45s11ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T06:26:06.272-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m40s45ms).
+{"@timestamp":"2025-05-22T06:26:06.272975-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m40s45ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T06:42:56.243-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s976ms).
+{"@timestamp":"2025-05-22T06:42:56.243818-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s976ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T06:54:46.223-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m19s966ms).
+{"@timestamp":"2025-05-22T06:54:46.223618-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m19s966ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T07:26:38.782-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T07:26:38.782219-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T07:26:38.798-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T07:26:38.798058-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+2025-05-22T07:26:38.803-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T07:26:38.803492-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
+2025-05-22T08:11:40.352-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m53s322ms).
+{"@timestamp":"2025-05-22T08:11:40.352792-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m53s322ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+{"@timestamp":"2025-05-22T08:27:42.296948-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m31s911ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T08:27:42.296-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m31s911ms).
+{"@timestamp":"2025-05-22T08:44:55.142931-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m42s828ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T08:44:55.142-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m42s828ms).
+2025-05-22T08:55:29.464-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m34s321ms).
+{"@timestamp":"2025-05-22T08:55:29.464112-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m34s321ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T09:07:08.022-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m8s548ms).
+{"@timestamp":"2025-05-22T09:07:08.022229-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m8s548ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T09:10:19.396-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m11s374ms).
+{"@timestamp":"2025-05-22T09:10:19.396422-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m11s374ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T09:11:02.255-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T09:11:02.255612-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T09:11:02.275-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T09:11:02.275213-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+2025-05-22T09:11:02.286-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T09:11:02.286313-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
+2025-05-22T09:31:59.340-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m39s170ms).
+{"@timestamp":"2025-05-22T09:31:59.34026-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m39s170ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T09:49:14.375-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m15s36ms).
+{"@timestamp":"2025-05-22T09:49:14.375976-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m15s36ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T11:31:31.949-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h42m17s574ms).
+{"@timestamp":"2025-05-22T11:31:31.949686-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h42m17s574ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T12:04:32.137-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m188ms).
+{"@timestamp":"2025-05-22T12:04:32.137823-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m188ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T12:48:12.748-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T12:48:12.748067-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T12:48:12.763-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T12:48:12.763574-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+2025-05-22T12:48:12.769-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T12:48:12.769871-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
+2025-05-22T12:50:55.339-04:00  WARN 86852 --- [FinManApp] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s659ms).
+{"@timestamp":"2025-05-22T12:50:55.339724-04:00","@version":"1","message":"HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s659ms).","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"HikariPool-1 housekeeper","level":"WARN","level_value":30000}
+2025-05-22T13:00:22.702-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+{"@timestamp":"2025-05-22T13:00:22.702008-04:00","@version":"1","message":"\n    select\n        u1_0.id,\n        u1_0.email,\n        u1_0.first_name,\n        u1_0.is_demo,\n        u1_0.last_name,\n        u1_0.monthly_income,\n        u1_0.password,\n        u1_0.payday_day \n    from\n        users u1_0","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.is_demo,
+        u1_0.last_name,
+        u1_0.monthly_income,
+        u1_0.password,
+        u1_0.payday_day 
+    from
+        users u1_0
+2025-05-22T13:00:22.722-04:00 DEBUG 86852 --- [FinManApp] [   scheduling-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.amount,
+        b1_0.category_id,
+        b1_0.end_date,
+        b1_0.name,
+        b1_0.period,
+        b1_0.start_date,
+        b1_0.user_id,
+        b1_0.warning_threshold 
+    from
+        budgets b1_0 
+    where
+        b1_0.user_id=? 
+        and b1_0.start_date<=? 
+        and b1_0.end_date>=?
+{"@timestamp":"2025-05-22T13:00:22.722542-04:00","@version":"1","message":"\n    select\n        b1_0.id,\n        b1_0.amount,\n        b1_0.category_id,\n        b1_0.end_date,\n        b1_0.name,\n        b1_0.period,\n        b1_0.start_date,\n        b1_0.user_id,\n        b1_0.warning_threshold \n    from\n        budgets b1_0 \n    where\n        b1_0.user_id=? \n        and b1_0.start_date<=? \n        and b1_0.end_date>=?","logger_name":"org.hibernate.SQL","thread_name":"scheduling-1","level":"DEBUG","level_value":10000}
+2025-05-22T13:00:22.728-04:00 ERROR 86852 --- [FinManApp] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)
+	at org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)
+	at java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)
+	at java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)
+	at java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)
+	at com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+{"@timestamp":"2025-05-22T13:00:22.728481-04:00","@version":"1","message":"Unexpected error occurred in scheduled task","logger_name":"org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler","thread_name":"scheduling-1","level":"ERROR","level_value":40000,"stack_trace":"org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.jay.home.finmanapp.model.User.accounts: could not initialize proxy - no Session\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:219)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:614)\n\tat org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:138)\n\tat org.hibernate.collection.spi.PersistentSet.iterator(PersistentSet.java:166)\n\tat java.base/java.util.Spliterators$IteratorSpliterator.estimateSize(Spliterators.java:1959)\n\tat java.base/java.util.Spliterator.getExactSizeIfKnown(Spliterator.java:414)\n\tat java.base/java.util.stream.AbstractPipeline.exactOutputSizeIfKnown(AbstractPipeline.java:470)\n\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:574)\n\tat java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)\n\tat java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)\n\tat java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)\n\tat com.jay.home.finmanapp.service.BudgetService.checkBudgetThresholds(BudgetService.java:146)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)\n\tat com.jay.home.finmanapp.service.BudgetService$$SpringCGLIB$$0.checkBudgetThresholds(<generated>)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.lambda$checkBudgetThresholds$0(SchedulingConfig.java:25)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat com.jay.home.finmanapp.config.SchedulingConfig.checkBudgetThresholds(SchedulingConfig.java:25)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)\n\tat io.micrometer.observation.Observation.observe(Observation.java:498)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:85)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:96)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n"}
