@@ -28,19 +28,25 @@
     </scm>
     <properties>
         <java.version>21</java.version>
-            <plaid.version>12.0.0</plaid.version>
-            <stripe.version>22.10.0</stripe.version>
-            <jjwt.version>0.11.5</jjwt.version>
-            <springdoc.version>2.2.0</springdoc.version>
-            <dd-trace-java.version>1.19.0</dd-trace-java.version>
+        <plaid.version>12.0.0</plaid.version>
+        <stripe.version>22.10.0</stripe.version>
+        <jjwt.version>0.11.5</jjwt.version>
+        <springdoc.version>2.2.0</springdoc.version>
+        <opentelemetry.version>1.32.0</opentelemetry.version>
     </properties>
     
-    <repositories>
-        <repository>
-            <id>datadog-maven</id>
-            <url>https://dl.bintray.com/datadog/datadog-maven</url>
-        </repository>
-    </repositories>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>${opentelemetry.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <dependencies>
         <!-- Spring Boot Starters -->
         <dependency>
@@ -68,22 +74,27 @@
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
         
-        <!-- Datadog APM and Tracing -->
+        <!-- OpenTelemetry with Spring Boot -->
         <dependency>
-            <groupId>io.opentracing</groupId>
-            <artifactId>opentracing-api</artifactId>
-            <version>0.33.0</version>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.opentracing</groupId>
-            <artifactId>opentracing-util</artifactId>
-            <version>0.33.0</version>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-otlp</artifactId>
         </dependency>
+        
+        <!-- Micrometer for metrics -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- Datadog Logback Integration -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        
+        <!-- Structured logging -->
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>

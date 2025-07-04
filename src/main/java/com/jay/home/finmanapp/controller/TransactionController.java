@@ -18,8 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import io.opentracing.Span;
-import io.opentracing.util.GlobalTracer;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.context.Scope;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -37,18 +37,21 @@ public class TransactionController {
     private final AccountService accountService;
     private final CategoryService categoryService;
     private final LoggingService loggingService;
+    private final TracingUtil tracingUtil;
 
     @Autowired
     public TransactionController(
             TransactionService transactionService,
             UserService userService,
             AccountService accountService,
-            CategoryService categoryService) {
+            CategoryService categoryService,
+            TracingUtil tracingUtil) {
         this.transactionService = transactionService;
         this.userService = userService;
         this.accountService = accountService;
         this.categoryService = categoryService;
         this.loggingService = new LoggingService(TransactionController.class);
+        this.tracingUtil = tracingUtil;
     }
 
     @GetMapping
@@ -59,16 +62,16 @@ public class TransactionController {
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) Long accountId) {
 
-        Span span = TracingUtil.startSpan("transaction.list");
-        try {
+        Span span = tracingUtil.startSpan("transaction.list");
+        try (Scope scope = span.makeCurrent()) {
             loggingService.info("Retrieving transactions for user: {}, startDate: {}, endDate: {}, categoryId: {}, accountId: {}",
                     userEmail, startDate, endDate, categoryId, accountId);
             
-            span.setTag("user.email", userEmail);
-            if (startDate != null) span.setTag("date.start", startDate.toString());
-            if (endDate != null) span.setTag("date.end", endDate.toString());
-            if (categoryId != null) span.setTag("category.id", categoryId);
-            if (accountId != null) span.setTag("account.id", accountId);
+            span.setAttribute("user.email", userEmail);
+            if (startDate != null) span.setAttribute("date.start", startDate.toString());
+            if (endDate != null) span.setAttribute("date.end", endDate.toString());
+            if (categoryId != null) span.setAttribute("category.id", String.valueOf(categoryId));
+            if (accountId != null) span.setAttribute("account.id", String.valueOf(accountId));
             
             User user = userService.getUserByEmail(userEmail);
             List<Account> accounts;
@@ -86,13 +89,13 @@ public class TransactionController {
                 accounts = accountService.getUserAccounts(user);
             }
 
-            span.setTag("accounts.count", accounts.size());
+            span.setAttribute("accounts.count", String.valueOf(accounts.size()));
             loggingService.debug("Found {} accounts for user {}", accounts.size(), userEmail);
 
             Category category = null;
             if (categoryId != null) {
                 category = categoryService.getCategoryById(categoryId);
-                span.setTag("category.name", category.getName());
+                span.setAttribute("category.name", category.getName());
             }
 
             LocalDateTime startDateTime = startDate != null ?
@@ -114,16 +117,16 @@ public class TransactionController {
                         accounts, startDateTime, endDateTime);
             }
 
-            span.setTag("transactions.count", transactions.size());
+            span.setAttribute("transactions.count", String.valueOf(transactions.size()));
             loggingService.info("Retrieved {} transactions for user {}", transactions.size(), userEmail);
             
             return ResponseEntity.ok(transactions);
         } catch (Exception e) {
             loggingService.error("Error retrieving transactions", e);
-            TracingUtil.recordException(e);
+            tracingUtil.recordException(span, e);
             throw e;
         } finally {
-            span.finish();
+            span.end();
         }
     }
 
@@ -250,34 +253,34 @@ public class TransactionController {
 
     @GetMapping("/sync")
     public ResponseEntity<Map<String, Object>> syncTransactions(@AuthenticationPrincipal String userEmail) {
-        Span span = TracingUtil.startSpan("transaction.sync");
+        Span span = tracingUtil.startSpan("transaction.sync");
         try {
             User user = userService.getUserByEmail(userEmail);
             List<Account> accounts = accountService.getUserAccounts(user);
 
-            span.setTag("user.email", userEmail);
-            span.setTag("accounts.count", accounts.size());
+            span.setAttribute("user.email", userEmail);
+            span.setAttribute("accounts.count", String.valueOf(accounts.size()));
             
             int totalSynced = 0;
             for (Account account : accounts) {
-                Span accountSpan = TracingUtil.startSpan("transaction.sync.account");
+                Span accountSpan = tracingUtil.startSpan("transaction.sync.account");
                 try {
                     // Add account-specific tags
-                    accountSpan.setTag("account.id", account.getId());
-                    accountSpan.setTag("account.name", account.getName());
+                    accountSpan.setAttribute("account.id", String.valueOf(account.getId()));
+                    accountSpan.setAttribute("account.name", account.getName());
                     
                     int syncedCount = transactionService.syncTransactionsForAccount(account);
                     totalSynced += syncedCount;
                     
                     // Record result in the span
-                    accountSpan.setTag("transactions.synced", syncedCount);
+                    accountSpan.setAttribute("transactions.synced", String.valueOf(syncedCount));
                 } finally {
-                    accountSpan.finish();
+                    accountSpan.end();
                 }
             }
 
             // Record the total in the parent span
-            span.setTag("transactions.total.synced", totalSynced);
+            span.setAttribute("transactions.total.synced", totalSynced);
 
             return ResponseEntity.ok(Map.of(
                     "status", "success",
@@ -285,10 +288,10 @@ public class TransactionController {
             ));
         } catch (Exception e) {
             // Record the exception in the current span
-            TracingUtil.recordException(e);
+            tracingUtil.recordException(span, e);
             throw e;
         } finally {
-            span.finish();
+            span.end();
         }
     }
 }

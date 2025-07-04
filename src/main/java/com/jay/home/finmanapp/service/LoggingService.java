@@ -1,20 +1,16 @@
 package com.jay.home.finmanapp.service;
 
-import io.opentracing.Span;
-import io.opentracing.Tracer;
-import io.opentracing.util.GlobalTracer;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.SpanContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Service for structured logging with trace correlation.
  * Provides logging methods that automatically include trace and span IDs
- * for correlation in APM tools.
+ * for correlation in observability tools.
  */
 @Service
 public class LoggingService {
@@ -46,13 +42,9 @@ public class LoggingService {
      * @param args arguments for the message format string
      */
     public void info(String message, Object... args) {
-        Span span = GlobalTracer.get().buildSpan("logging.info").start();
-        try {
-            setTraceAndSpanIds();
-            logger.info(message, args);
-        } finally {
-            span.finish();
-        }
+        setTraceCorrelation();
+        logger.info(message, args);
+        clearTraceCorrelation();
     }
     
     /**
@@ -62,13 +54,9 @@ public class LoggingService {
      * @param args arguments for the message format string
      */
     public void warn(String message, Object... args) {
-        Span span = GlobalTracer.get().buildSpan("logging.warn").start();
-        try {
-            setTraceAndSpanIds();
-            logger.warn(message, args);
-        } finally {
-            span.finish();
-        }
+        setTraceCorrelation();
+        logger.warn(message, args);
+        clearTraceCorrelation();
     }
     
     /**
@@ -78,41 +66,22 @@ public class LoggingService {
      * @param args arguments for the message format string
      */
     public void error(String message, Object... args) {
-        Span span = GlobalTracer.get().buildSpan("logging.error").start();
-        try {
-            setTraceAndSpanIds();
-            logger.error(message, args);
-        } finally {
-            span.finish();
-        }
+        setTraceCorrelation();
+        logger.error(message, args);
+        clearTraceCorrelation();
     }
     
     /**
-     * Log an error message with an exception and correlation IDs.
+     * Log an error message with exception and correlation IDs.
      * 
      * @param message the message to log
      * @param throwable the exception to log
+     * @param args arguments for the message format string
      */
-    public void error(String message, Throwable throwable) {
-        Span span = GlobalTracer.get().buildSpan("logging.error.exception").start();
-        try {
-            setTraceAndSpanIds();
-            
-            // Add error information to the current span
-            span.setTag("error", true);
-            
-            Map<String, Object> errorLogs = new HashMap<>();
-            errorLogs.put("event", "error");
-            errorLogs.put("error.object", throwable);
-            errorLogs.put("error.message", throwable.getMessage());
-            errorLogs.put("error.kind", throwable.getClass().getName());
-            
-            span.log(errorLogs);
-            
-            logger.error(message, throwable);
-        } finally {
-            span.finish();
-        }
+    public void error(String message, Throwable throwable, Object... args) {
+        setTraceCorrelation();
+        logger.error(message, throwable, args);
+        clearTraceCorrelation();
     }
     
     /**
@@ -122,27 +91,30 @@ public class LoggingService {
      * @param args arguments for the message format string
      */
     public void debug(String message, Object... args) {
-        Span span = GlobalTracer.get().buildSpan("logging.debug").start();
-        try {
-            setTraceAndSpanIds();
-            logger.debug(message, args);
-        } finally {
-            span.finish();
+        setTraceCorrelation();
+        logger.debug(message, args);
+        clearTraceCorrelation();
+    }
+    
+    /**
+     * Sets trace correlation information in MDC for structured logging.
+     */
+    private void setTraceCorrelation() {
+        Span currentSpan = Span.current();
+        if (currentSpan != null) {
+            SpanContext spanContext = currentSpan.getSpanContext();
+            if (spanContext.isValid()) {
+                MDC.put("trace.id", spanContext.getTraceId());
+                MDC.put("span.id", spanContext.getSpanId());
+            }
         }
     }
     
     /**
-     * Sets the trace and span IDs from the active span in the MDC context.
-     * This enables correlation between logs and traces.
+     * Clears trace correlation information from MDC.
      */
-    private void setTraceAndSpanIds() {
-        Tracer tracer = GlobalTracer.get();
-        Span span = tracer.activeSpan();
-        
-        if (span != null && span.context() != null) {
-            // Store generic trace IDs that will be picked up by any APM tool
-            MDC.put("trace.id", span.context().toTraceId());
-            MDC.put("span.id", span.context().toSpanId());
-        }
+    private void clearTraceCorrelation() {
+        MDC.remove("trace.id");
+        MDC.remove("span.id");
     }
 }

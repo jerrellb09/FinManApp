@@ -149,6 +149,7 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll() // For H2 console access
                 .requestMatchers("/error").permitAll() // Error endpoint
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Swagger endpoints
+                .requestMatchers("/actuator/**").permitAll() // Actuator endpoints for monitoring
                 // NOTE: The following line allows all API endpoints without authentication
                 // This is for development convenience and should be removed in production
                 .requestMatchers("/api/**").permitAll()

@@ -1,46 +1,55 @@
 package com.jay.home.finmanapp.util;
 
-import io.opentracing.Span;
-import io.opentracing.Tracer;
-import io.opentracing.util.GlobalTracer;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.StatusCode;
+import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.context.Scope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Utility class for manual tracing with OpenTracing.
+ * Utility class for manual tracing with OpenTelemetry.
  * Provides methods to create and manage spans for specific operations.
  */
+@Component
 public class TracingUtil {
     private static final Logger logger = LoggerFactory.getLogger(TracingUtil.class);
+    
+    private final Tracer tracer;
 
-    /**
-     * Creates a new span as a child of the current active span.
-     *
-     * @param operationName name of the operation being traced
-     * @return the created span
-     */
-    public static Span startSpan(String operationName) {
-        Tracer tracer = GlobalTracer.get();
-        return tracer.buildSpan(operationName).start();
+    @Autowired
+    public TracingUtil(Tracer tracer) {
+        this.tracer = tracer;
     }
 
     /**
-     * Creates a new span with additional tags.
+     * Creates a new span for tracing an operation.
      *
      * @param operationName name of the operation being traced
-     * @param tags a map of key-value pairs to add as tags to the span
      * @return the created span
      */
-    public static Span startSpan(String operationName, Map<String, Object> tags) {
-        Tracer tracer = GlobalTracer.get();
-        Span span = tracer.buildSpan(operationName).start();
+    public Span startSpan(String operationName) {
+        return tracer.spanBuilder(operationName).startSpan();
+    }
+
+    /**
+     * Creates a new span with additional attributes.
+     *
+     * @param operationName name of the operation being traced
+     * @param attributes a map of key-value pairs to add as attributes to the span
+     * @return the created span
+     */
+    public Span startSpan(String operationName, Map<String, String> attributes) {
+        Span span = tracer.spanBuilder(operationName).startSpan();
         
-        if (tags != null) {
-            for (Map.Entry<String, Object> entry : tags.entrySet()) {
-                span.setTag(entry.getKey(), String.valueOf(entry.getValue()));
+        if (attributes != null) {
+            for (Map.Entry<String, String> entry : attributes.entrySet()) {
+                span.setAttribute(entry.getKey(), entry.getValue());
             }
         }
         
@@ -48,57 +57,47 @@ public class TracingUtil {
     }
 
     /**
-     * Adds an error to the current active span.
+     * Records an exception in the current span.
      *
+     * @param span the span to record the exception in
      * @param throwable the exception to record
      */
-    public static void recordException(Throwable throwable) {
-        Tracer tracer = GlobalTracer.get();
-        Span span = tracer.activeSpan();
-        
+    public void recordException(Span span, Throwable throwable) {
         if (span != null) {
-            span.setTag("error", true);
-            
-            Map<String, Object> errorLogs = new HashMap<>();
-            errorLogs.put("event", "error");
-            errorLogs.put("error.object", throwable);
-            errorLogs.put("error.message", throwable.getMessage());
-            errorLogs.put("error.kind", throwable.getClass().getName());
-            errorLogs.put("stack", getStackTraceAsString(throwable));
-            
-            span.log(errorLogs);
+            span.recordException(throwable);
+            span.setStatus(StatusCode.ERROR, throwable.getMessage());
             logger.error("Error recorded in span: {}", throwable.getMessage(), throwable);
         }
     }
 
     /**
-     * A traced method example.
-     * Add your own custom spans around important operations.
+     * Executes a traced operation with automatic span management.
+     *
+     * @param operationName name of the operation
+     * @param operation the operation to execute
+     * @param <T> return type of the operation
+     * @return result of the operation
+     * @throws Exception if the operation throws an exception
      */
-    public static void tracedMethod() {
-        Span span = startSpan("custom.operation");
-        try {
-            // Method logic here will be traced
-            logger.info("Executing traced method");
+    public <T> T executeTraced(String operationName, TracedOperation<T> operation) throws Exception {
+        Span span = startSpan(operationName);
+        try (Scope scope = span.makeCurrent()) {
+            T result = operation.execute();
+            span.setStatus(StatusCode.OK);
+            return result;
+        } catch (Exception e) {
+            recordException(span, e);
+            throw e;
         } finally {
-            span.finish();
+            span.end();
         }
     }
 
     /**
-     * Converts a throwable's stack trace to a string.
-     *
-     * @param throwable the exception to convert
-     * @return the stack trace as a string
+     * Functional interface for traced operations.
      */
-    private static String getStackTraceAsString(Throwable throwable) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(throwable.toString()).append("\n");
-        
-        for (StackTraceElement element : throwable.getStackTrace()) {
-            sb.append("\tat ").append(element.toString()).append("\n");
-        }
-        
-        return sb.toString();
+    @FunctionalInterface
+    public interface TracedOperation<T> {
+        T execute() throws Exception;
     }
 }

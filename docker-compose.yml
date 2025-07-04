@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:14-alpine
@@ -40,12 +38,6 @@ services:
       timeout: 10s
       retries: 3
 
-  gemma2:
-    image: gemma2/gemma2
-    container_name: gemma2
-    ports:
-      - "11435:11435"
-      
   # FinManApp service
   finmanapp:
     build:
@@ -59,38 +51,100 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - LLAMA3_API_URL=http://llama3:8080
-      - DD_AGENT_HOST=datadog-agent
-      - DD_TRACE_ENABLED=true
-      - DD_LOGS_INJECTION=true
-      - DD_PROFILING_ENABLED=true
-      - DD_SERVICE=finmanapp
-      - DD_ENV=dev
-      - DD_VERSION=0.0.1
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+      - OTEL_LOGS_EXPORTER=none
+      - OTEL_SERVICE_NAME=finmanapp
+      - OTEL_SERVICE_VERSION=0.0.1
+      - OTEL_RESOURCE_ATTRIBUTES=environment=dev
     depends_on:
       - postgres
-      - datadog-agent
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "java", "service": "finmanapp"}]'
+      - otel-collector
       
-  # Datadog Agent
-  datadog-agent:
-    image: datadog/agent:latest
-    container_name: datadog-agent
-    environment:
-      - DD_API_KEY=8f478971895258597575fa486c29ffdf
-      - DD_LOGS_ENABLED=true
-      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
-      - DD_CONTAINER_EXCLUDE_LOGS=name:datadog-agent
-      - DD_APM_ENABLED=true
-      - DD_APM_NON_LOCAL_TRAFFIC=true
-      - DD_SITE=us5.datadoghq.com
+  # OpenTelemetry Collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "14250:14250" # Jaeger gRPC
+      - "14268:14268" # Jaeger thrift HTTP
+      - "9464:9464"   # Prometheus metrics
+    depends_on:
+      - prometheus
+
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+
+  # Loki for logs
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki_data:/loki
+
+  # Promtail for log collection
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /proc/:/host/proc/:ro
-      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./promtail-config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    depends_on:
+      - loki
+
+  # Jaeger for traces
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
     ports:
-      - "8126:8126"
+      - "16686:16686"  # Jaeger UI
+      - "14251:14250"  # gRPC (mapped to avoid conflict)
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+      - loki
+      - jaeger
 
 volumes:
   postgres_data:
   llama3_data:
+  prometheus_data:
+  grafana_data:
+  loki_data:
