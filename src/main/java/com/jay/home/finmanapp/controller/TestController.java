@@ -1,17 +1,22 @@
 package com.jay.home.finmanapp.controller;
 
 import com.jay.home.finmanapp.dto.BillDTO;
+import com.jay.home.finmanapp.dto.TransactionImportDTO;
 import com.jay.home.finmanapp.mapper.BillMapper;
 import com.jay.home.finmanapp.model.Bill;
 import com.jay.home.finmanapp.model.User;
 import com.jay.home.finmanapp.service.AIService;
 import com.jay.home.finmanapp.service.BillService;
+import com.jay.home.finmanapp.service.CSVParserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -25,12 +30,14 @@ public class TestController {
     private final BillMapper billMapper;
     private final BillService billService;
     private final ApplicationContext applicationContext;
+    private final CSVParserService csvParserService;
 
     @Autowired
-    public TestController(BillMapper billMapper, BillService billService, ApplicationContext applicationContext) {
+    public TestController(BillMapper billMapper, BillService billService, ApplicationContext applicationContext, CSVParserService csvParserService) {
         this.billMapper = billMapper;
         this.billService = billService;
         this.applicationContext = applicationContext;
+        this.csvParserService = csvParserService;
     }
 
     @GetMapping("/bills")
@@ -73,6 +80,22 @@ public class TestController {
             
             result.put("success", true);
             result.put("insights", insights);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+            return ResponseEntity.status(500).body(result);
+        }
+    }
+    
+    @PostMapping("/parse-csv")
+    public ResponseEntity<Map<String, Object>> parseCSVTest(@RequestParam("file") MultipartFile file) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<TransactionImportDTO> transactions = csvParserService.parseCSV(file);
+            result.put("success", true);
+            result.put("count", transactions.size());
+            result.put("firstTransaction", transactions.isEmpty() ? "None" : transactions.get(0));
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             result.put("success", false);

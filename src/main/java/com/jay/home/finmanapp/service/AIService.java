@@ -3,6 +3,9 @@ package com.jay.home.finmanapp.service;
 import com.jay.home.finmanapp.model.Budget;
 import com.jay.home.finmanapp.model.Transaction;
 import com.jay.home.finmanapp.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,13 +20,24 @@ import java.util.Map;
 
 @Service
 public class AIService {
+    
+    private static final Logger logger = LoggerFactory.getLogger(AIService.class);
 
-    @Value("${llama3.api.url:http://localhost:8081}")
+    @Value("${ai.provider:llama3}")
+    private String aiProvider;
+    
+    @Value("${ai.fallback-enabled:true}")
+    private boolean fallbackEnabled;
+
+    @Value("${llama3.api.url:http://localhost:11434}")
     private String llama3ApiUrl;
 
     private final RestTemplate restTemplate;
     private final TransactionService transactionService;
     private final BudgetService budgetService;
+    
+    @Autowired(required = false)
+    private AnthropicAIService anthropicAIService;
 
     public AIService(RestTemplate restTemplate, TransactionService transactionService, BudgetService budgetService) {
         this.restTemplate = restTemplate;
@@ -46,7 +60,7 @@ public class AIService {
         }
         
         String prompt = buildInsightPrompt(user, recentTransactions);
-        String aiResponse = callLlama3Api(prompt);
+        String aiResponse = callAIService(prompt);
         
         Map<String, Object> result = new HashMap<>();
         result.put("insights", aiResponse);
@@ -63,7 +77,7 @@ public class AIService {
         List<Budget> existingBudgets = budgetService.getBudgetsByUser(user);
         
         String prompt = buildBudgetPrompt(user, transactions, existingBudgets);
-        String aiResponse = callLlama3Api(prompt);
+        String aiResponse = callAIService(prompt);
         
         Map<String, Object> result = new HashMap<>();
         result.put("suggestions", aiResponse);
@@ -79,7 +93,7 @@ public class AIService {
         List<Transaction> transactions = transactionService.getRecentTransactionsForUser(user, 60);
         
         String prompt = buildSpendingHabitsPrompt(user, transactions);
-        String aiResponse = callLlama3Api(prompt);
+        String aiResponse = callAIService(prompt);
         
         Map<String, Object> result = new HashMap<>();
         result.put("analysis", aiResponse);
@@ -87,6 +101,45 @@ public class AIService {
         return result;
     }
 
+    /**
+     * Call the configured AI service with a prompt
+     * @param prompt The prompt to send to the AI model
+     * @return The model's response
+     */
+    private String callAIService(String prompt) {
+        logger.info("Using AI provider: {}", aiProvider);
+        
+        // Try primary AI provider
+        try {
+            if ("anthropic".equalsIgnoreCase(aiProvider) && anthropicAIService != null && anthropicAIService.isAvailable()) {
+                return anthropicAIService.generateAnalysis(prompt);
+            } else if ("llama3".equalsIgnoreCase(aiProvider)) {
+                return callLlama3Api(prompt);
+            }
+        } catch (Exception e) {
+            logger.warn("Primary AI provider '{}' failed: {}", aiProvider, e.getMessage());
+            
+            // Try fallback if enabled
+            if (fallbackEnabled) {
+                try {
+                    if ("anthropic".equalsIgnoreCase(aiProvider)) {
+                        logger.info("Falling back to LLaMA 3");
+                        return callLlama3Api(prompt);
+                    } else if (anthropicAIService != null && anthropicAIService.isAvailable()) {
+                        logger.info("Falling back to Anthropic");
+                        return anthropicAIService.generateAnalysis(prompt);
+                    }
+                } catch (Exception fallbackException) {
+                    logger.warn("Fallback AI provider also failed: {}", fallbackException.getMessage());
+                }
+            }
+        }
+        
+        // If all else fails, return fallback response
+        logger.warn("All AI providers failed, returning fallback response");
+        return generateFallbackResponse(prompt);
+    }
+    
     /**
      * Call the LLaMA 3 API with a prompt
      * @param prompt The prompt to send to the LLaMA 3 model

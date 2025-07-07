@@ -253,4 +253,8 @@ public class BillService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         return total;
     }
+    
+    public List<Bill> saveAll(List<Bill> bills) {
+        return billRepository.saveAll(bills);
+    }
 }

@@ -154,6 +154,13 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- CSV Processing -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+
         <!-- Lombok to reduce boilerplate -->
         <dependency>
             <groupId>org.projectlombok</groupId>

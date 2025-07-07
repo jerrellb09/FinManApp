@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findByUser(User user);
     List<Account> findByUserAndType(User user, String type);
+    Optional<Account> findByNameAndUser(String name, User user);
 
     @Query("SELECT SUM(a.balance) FROM Account a WHERE a.user = ?1 AND a.type = 'CHECKING' OR a.type = 'SAVINGS'")
     BigDecimal getTotalCashBalance(User user);
