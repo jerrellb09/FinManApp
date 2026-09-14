@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.15</version>
+        <version>4.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jay.home</groupId>
@@ -33,12 +33,11 @@
         <jjwt.version>0.11.5</jjwt.version>
         <springdoc.version>2.8.10</springdoc.version>
         <opentelemetry.version>1.62.0</opentelemetry.version>
-        <!-- Patch-level overrides of Spring Boot's managed versions to close Snyk-flagged CVEs
-             that the 3.5.15 BOM hasn't picked up yet -->
-        <tomcat.version>10.1.56</tomcat.version>
-        <postgresql.version>42.7.12</postgresql.version>
-        <logback.version>1.5.38</logback.version>
-        <micrometer.version>1.16.7</micrometer.version>
+        <!-- Boot 4.1.1's own BOM already satisfies tomcat/postgresql/logback/micrometer at or
+             above the versions the 3.5.15 patch pass had to force manually - only Jackson 3
+             (tools.jackson) still needs bumping past what Boot 4.1.1 pins (3.1.5) to close
+             CVEs fixed in 3.1.6/3.2.2 -->
+        <jackson-bom.version>3.2.2</jackson-bom.version>
     </properties>
 
     <dependencyManagement>
@@ -72,22 +71,13 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.18.0</version>
             </dependency>
+            <!-- jjwt has no Jackson 3 support yet, so jjwt-jackson keeps pulling Jackson 2
+                 (com.fasterxml) transitively; pin it above the CVE-fixed version regardless of
+                 whether Boot 4's own BOM still manages this coordinate -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.21.6</version>
-            </dependency>
-            <!-- logstash-logback-encoder 9.x pulls the separate Jackson 3 (tools.jackson) line,
-                 not covered by Spring Boot's jackson-bom -->
-            <dependency>
-                <groupId>tools.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>3.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>tools.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>3.2.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
