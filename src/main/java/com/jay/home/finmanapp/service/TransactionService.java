@@ -13,23 +13,31 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TransactionService {
     
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
     
     public List<Transaction> getTransactionsByAccountsAndCategoryAndDateBetween(
             List<Account> accounts, Category category, LocalDateTime startDate, LocalDateTime endDate) {
-        // Implementation placeholder
-        return List.of();
+        if (accounts.isEmpty()) {
+            return List.of();
+        }
+        return transactionRepository.findByAccountInAndCategoryAndDateBetween(accounts, category, startDate, endDate);
     }
     
     public List<Transaction> getTransactionsByAccountsAndDateBetween(
             List<Account> accounts, LocalDateTime startDate, LocalDateTime endDate) {
-        // Implementation placeholder
-        return List.of();
+        if (accounts.isEmpty()) {
+            return List.of();
+        }
+        return transactionRepository.findByAccountInAndDateBetween(accounts, startDate, endDate);
     }
     
     /**
@@ -47,24 +55,30 @@ public class TransactionService {
     }
     
     public Transaction getTransactionById(Long id) {
-        // Implementation placeholder
-        return new Transaction();
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found with id: " + id));
     }
     
     public Transaction addManualTransaction(
             Account account, String description, BigDecimal amount, 
             LocalDateTime date, Category category) {
-        // Implementation placeholder
-        return new Transaction();
+        Transaction transaction = new Transaction();
+        transaction.setAccount(account);
+        transaction.setTransactionId("manual-" + UUID.randomUUID());
+        transaction.setDescription(description);
+        transaction.setAmount(amount);
+        transaction.setDate(date);
+        transaction.setCategory(category);
+        transaction.setManualEntry(true);
+        return transactionRepository.save(transaction);
     }
     
     public Transaction updateTransaction(Transaction transaction) {
-        // Implementation placeholder
-        return transaction;
+        return transactionRepository.save(transaction);
     }
     
     public void deleteTransaction(Long id) {
-        // Implementation placeholder
+        transactionRepository.deleteById(id);
     }
     
     public int syncTransactionsForAccount(Account account) {

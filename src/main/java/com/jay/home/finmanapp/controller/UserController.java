@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -36,22 +35,22 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<User> getUserProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        if (userDetails == null) {
+    public ResponseEntity<User> getUserProfile(@AuthenticationPrincipal String userEmail) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         return ResponseEntity.ok(user);
     }
 
     @PutMapping("/profile")
     public ResponseEntity<User> updateUserProfile(
-            @AuthenticationPrincipal UserDetails userDetails,
+            @AuthenticationPrincipal String userEmail,
             @RequestBody Map<String, String> request) {
-        if (userDetails == null) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         User updatedUser = userService.updateUser(
                 user.getId(),
                 request.get("firstName"),
@@ -62,12 +61,12 @@ public class UserController {
 
     @PostMapping("/change-password")
     public ResponseEntity<Void> changePassword(
-            @AuthenticationPrincipal UserDetails userDetails,
+            @AuthenticationPrincipal String userEmail,
             @RequestBody Map<String, String> request) {
-        if (userDetails == null) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         userService.changePassword(
                 user.getId(),
                 request.get("currentPassword"),
@@ -78,12 +77,12 @@ public class UserController {
 
     @DeleteMapping("/account")
     public ResponseEntity<Void> deleteAccount(
-            @AuthenticationPrincipal UserDetails userDetails,
+            @AuthenticationPrincipal String userEmail,
             @RequestBody Map<String, String> request) {
-        if (userDetails == null) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         if (userService.verifyPassword(user, request.get("password"))) {
             userService.deleteUser(user.getId());
             return ResponseEntity.ok().build();
@@ -94,12 +93,12 @@ public class UserController {
     
     @PatchMapping("/income")
     public ResponseEntity<User> updateIncome(
-            @AuthenticationPrincipal UserDetails userDetails,
+            @AuthenticationPrincipal String userEmail,
             @RequestBody Map<String, Object> request) {
-        if (userDetails == null) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         
         BigDecimal monthlyIncome = null;
         Integer paydayDay = null;
@@ -117,11 +116,11 @@ public class UserController {
     }
     
     @GetMapping("/income")
-    public ResponseEntity<Map<String, Object>> getIncome(@AuthenticationPrincipal UserDetails userDetails) {
-        if (userDetails == null) {
+    public ResponseEntity<Map<String, Object>> getIncome(@AuthenticationPrincipal String userEmail) {
+        if (userEmail == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(userEmail);
         Map<String, Object> response = Map.of(
             "monthlyIncome", user.getMonthlyIncome() != null ? user.getMonthlyIncome() : BigDecimal.ZERO,
             "paydayDay", user.getPaydayDay() != null ? user.getPaydayDay() : 0

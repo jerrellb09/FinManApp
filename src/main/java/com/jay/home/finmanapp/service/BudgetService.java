@@ -129,8 +129,9 @@ public class BudgetService {
             BigDecimal result = transactionRepository.getSumByAccountsAndCategoryAndDateBetween(
                     accounts, budget.getCategory(), startDateTime, endDateTime);
             
-            // Return zero instead of null
-            return result != null ? result : BigDecimal.ZERO;
+            // Expenses are stored as negative amounts, so spending is the negated net (refunds offset it);
+            // return zero instead of null or a net credit
+            return result != null ? result.negate().max(BigDecimal.ZERO) : BigDecimal.ZERO;
             
         } catch (Exception e) {
             // Log the error but don't crash

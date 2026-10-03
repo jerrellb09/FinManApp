@@ -71,6 +71,13 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.18.0</version>
             </dependency>
+            <!-- Jackson 3.2.2 databind needs annotations 2.22 (JsonApplyView), but Boot's Jackson 2
+                 management pins 2.21, which 500s every endpoint that serialises an entity -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.22</version>
+            </dependency>
             <!-- jjwt has no Jackson 3 support yet, so jjwt-jackson keeps pulling Jackson 2
                  (com.fasterxml) transitively; pin it above the CVE-fixed version regardless of
                  whether Boot 4's own BOM still manages this coordinate -->
